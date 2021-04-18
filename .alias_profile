@@ -1,0 +1,12 @@
+#!/bin/bash
+
+alias ls='lsd'
+alias l='ls -l'
+alias ll='l'
+alias la='ls -a'
+alias lla='ls -la'
+alias lt='ls --tree'
+
+alias ssh='env TERM=xterm-256color ssh'
+
+alias wanip='dig +short myip.opendns.com @resolver4.opendns.com'
