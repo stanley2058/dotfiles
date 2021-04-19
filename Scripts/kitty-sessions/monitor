@@ -1,0 +1,5 @@
+title Monitor
+layout fat
+launch htop
+launch watch -n 1 sensors
+launch watch -n 1 "lscpu | grep MHz"
