@@ -24,6 +24,8 @@ if [ -f $HOME/miniconda3/bin/conda ]
     # <<< conda initialize <<<
 end
 
+set -U FZF_LEGACY_KEYBINDINGS 0
+
 # Theme
 set -g theme_display_git yes
 set -g theme_display_git_dirty yes

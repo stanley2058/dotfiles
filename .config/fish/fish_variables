@@ -1,12 +1,19 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
+SETUVAR FZF_DEFAULT_OPTS:\x2d\x2dheight\x2040\x25
+SETUVAR FZF_DISABLE_KEYBINDINGS:0
+SETUVAR FZF_LEGACY_KEYBINDINGS:0
+SETUVAR FZF_PREVIEW_DIR_CMD:ls
+SETUVAR FZF_PREVIEW_FILE_CMD:head\x20\x2dn\x2010
+SETUVAR FZF_TMUX_HEIGHT:40\x25
 SETUVAR __fish_initialized:3100
 SETUVAR _fisher_FabioAntunes_2F_fish_2D_nvm_files:/home/stanley/\x2econfig/fish/functions/__nvm_run\x2efish\x1e/home/stanley/\x2econfig/fish/functions/node\x2efish\x1e/home/stanley/\x2econfig/fish/functions/npm\x2efish\x1e/home/stanley/\x2econfig/fish/functions/npx\x2efish\x1e/home/stanley/\x2econfig/fish/functions/nvm\x2efish\x1e/home/stanley/\x2econfig/fish/functions/nvm_alias_command\x2efish\x1e/home/stanley/\x2econfig/fish/functions/nvm_alias_function\x2efish\x1e/home/stanley/\x2econfig/fish/functions/yarn\x2efish\x1e/home/stanley/\x2econfig/fish/completions/nvm\x2efish
 SETUVAR _fisher_edc_2F_bass_files:/home/stanley/\x2econfig/fish/functions/__bass\x2epy\x1e/home/stanley/\x2econfig/fish/functions/bass\x2efish
 SETUVAR _fisher_evanlucas_2F_fish_2D_kubectl_2D_completions_files:/home/stanley/\x2econfig/fish/completions/kubectl\x2efish
+SETUVAR _fisher_jethrokuan_2F_fzf_files:/home/stanley/\x2econfig/fish/functions/__fzf_cd\x2efish\x1e/home/stanley/\x2econfig/fish/functions/__fzf_complete\x2efish\x1e/home/stanley/\x2econfig/fish/functions/__fzf_complete_preview\x2efish\x1e/home/stanley/\x2econfig/fish/functions/__fzf_find_file\x2efish\x1e/home/stanley/\x2econfig/fish/functions/__fzf_get_dir\x2efish\x1e/home/stanley/\x2econfig/fish/functions/__fzf_open\x2efish\x1e/home/stanley/\x2econfig/fish/functions/__fzf_parse_commandline\x2efish\x1e/home/stanley/\x2econfig/fish/functions/__fzf_reverse_isearch\x2efish\x1e/home/stanley/\x2econfig/fish/functions/__fzfcmd\x2efish\x1e/home/stanley/\x2econfig/fish/conf\x2ed/fzf\x2efish
 SETUVAR _fisher_oh_2D_my_2D_fish_2F_plugin_2D_errno_files:/home/stanley/\x2econfig/fish/functions/errno\x2efish\x1e/home/stanley/\x2econfig/fish/functions/strerror\x2efish\x1e/home/stanley/\x2econfig/fish/completions/errno\x2efish\x1e/home/stanley/\x2econfig/fish/completions/strerror\x2efish
 SETUVAR _fisher_patrickf1_2F_colored__man__pages_2E_fish_files:/home/stanley/\x2econfig/fish/functions/man\x2efish
-SETUVAR _fisher_plugins:edc/bass\x1epatrickf1/colored_man_pages\x2efish\x1eoh\x2dmy\x2dfish/plugin\x2derrno\x1eevanlucas/fish\x2dkubectl\x2dcompletions\x1eFabioAntunes/fish\x2dnvm
+SETUVAR _fisher_plugins:edc/bass\x1epatrickf1/colored_man_pages\x2efish\x1eoh\x2dmy\x2dfish/plugin\x2derrno\x1eevanlucas/fish\x2dkubectl\x2dcompletions\x1eFabioAntunes/fish\x2dnvm\x1ejethrokuan/fzf
 SETUVAR fish_color_autosuggestion:555\x1ebrblack
 SETUVAR fish_color_cancel:\x2dr
 SETUVAR fish_color_command:005fd7
