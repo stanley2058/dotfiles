@@ -12,15 +12,17 @@ function fish_greeting
 end
 
 # Bass
-bass source /etc/profile
 #bass source /usr/share/nvm/init-nvm.sh
+bass source /etc/profile
 bass source $HOME/.alias_profile
 bass source $HOME/.env_profile
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-eval /home/stanley/miniconda3/bin/conda "shell.fish" "hook" $argv | source
-# <<< conda initialize <<<
+if [ -f $HOME/miniconda3/bin/conda ]
+    # >>> conda initialize >>>
+    # !! Contents within this block are managed by 'conda init' !!
+    eval $HOME/miniconda3/bin/conda "shell.fish" "hook" $argv | source
+    # <<< conda initialize <<<
+end
 
 # Theme
 set -g theme_display_git yes
