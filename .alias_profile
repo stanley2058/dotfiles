@@ -1,6 +1,6 @@
 #!/bin/bash
 
-alias ls='lsd'
+alias ls='lsd --group-dirs first'
 alias l='ls -l'
 alias ll='l'
 alias la='ls -a'

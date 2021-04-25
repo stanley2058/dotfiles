@@ -13,7 +13,7 @@ end
 
 # Bass
 bass source /etc/profile
-bass source /usr/share/nvm/init-nvm.sh
+#bass source /usr/share/nvm/init-nvm.sh
 bass source $HOME/.alias_profile
 bass source $HOME/.env_profile
 
