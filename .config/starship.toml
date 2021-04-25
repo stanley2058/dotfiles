@@ -32,8 +32,7 @@ disabled = false
 
 [memory_usage]
 symbol = " "
-format = "$symbol[${ram}]($style) "
-show_percentage = true
+format = "$symbol[${ram} ${ram_pct}]($style) "
 threshold = 80
 style = "bold dimmed white"
 disabled = false
