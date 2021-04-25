@@ -10,3 +10,5 @@ alias lt='ls --tree'
 alias ssh='env TERM=xterm-256color ssh'
 
 alias wanip='dig +short myip.opendns.com @resolver4.opendns.com'
+
+alias gitlg="git log --graph --oneline --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'"
