@@ -4,3 +4,4 @@ oh-my-fish/plugin-errno
 evanlucas/fish-kubectl-completions
 FabioAntunes/fish-nvm
 jethrokuan/fzf
+jorgebucaran/spark.fish

@@ -1,22 +1,24 @@
 #!/usr/bin/fish
-# Env Vars
-set system_logo ""
-set greet_msg (echo -e "\e[34m$system_logo \e[0m") \
-        (echo -e "\e[1;32m"(uname -rn)"\e[0m" \
-                 "\e[1;36m"(date +"%r")"\e[0m" \
-                 "\e[1;37m"(uptime -p)"\e[0m")
 
+# Fish greet
 function fish_greeting
-    echo $greet_msg
-    echo (awk -f $HOME/Scripts/color-bar.awk)
+    set system_logo ""
+    set greet_msg (printf "\033[34m%s \033[1;32m%s \033[1;36m%s \033[1;37m%s \033[0m" $system_logo (uname -rn) (date +"%r") (uptime -p))
+    printf "%s\n%s\n" $greet_msg (awk -f $HOME/Scripts/color-bar.awk)
+end
+
+# Spark for clear
+alias clear='/usr/bin/env clear; seq 1 (tput cols) | sort -R | spark | lolcat'
+function fish_user_key_bindings
+    bind \cl 'clear; echo; echo; commandline -f repaint'
 end
 
 # Bass
-#bass source /usr/share/nvm/init-nvm.sh
 bass source /etc/profile
 bass source $HOME/.alias_profile
 bass source $HOME/.env_profile
 
+# Init conda if exist
 if [ -f $HOME/miniconda3/bin/conda ]
     # >>> conda initialize >>>
     # !! Contents within this block are managed by 'conda init' !!
@@ -24,18 +26,16 @@ if [ -f $HOME/miniconda3/bin/conda ]
     # <<< conda initialize <<<
 end
 
+# Env vars
 set -U FZF_LEGACY_KEYBINDINGS 0
 
-# Theme
-set -g theme_display_git yes
-set -g theme_display_git_dirty yes
-set -g theme_display_git_untracked yes
-set -g theme_display_docker_machine yes
-set -g theme_display_virtualenv yes
-set -g theme_color_scheme nord
+# Fish colors
+set fish_color_normal brcyan
+set fish_color_autosuggestion '#7d7d7d'
+set fish_color_command brgreen
+set fish_color_error red
+set fish_color_param brcyan
 
-### RANDOM COLOR SCRIPT ###
-#colorscript random
 
 # Init Starship
 starship init fish | source
