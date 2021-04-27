@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-PLAYER=mpv
+PLAYER=""
 URL=""
 CHAT_FLAG=""
 DRY_RUN=""
