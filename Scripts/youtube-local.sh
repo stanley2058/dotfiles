@@ -10,7 +10,7 @@ for arg in "$@"; do
     if [ "$arg" == "-c" ] || [ $arg == "--chat" ]; then CHAT_FLAG="1"; fi
     if [ "$arg" == "-d" ] || [ $arg == "--dry-run" ]; then DRY_RUN="1"; fi
     if [[ $arg == "http"* ]]; then URL=$arg; fi
-    if [ $arg == "--player="* ]; then
+    if [[ $arg == "--player="* ]]; then
         PLAYER=${arg/--player=/}
     fi
     if [ "$arg" == "-h" ] || [ $arg == "--help" ]; then
