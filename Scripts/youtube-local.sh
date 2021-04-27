@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-PLAYER=""
-URL=""
-CHAT_FLAG=""
-DRY_RUN=""
-WATCH_URL=""
+PLAYER=
+URL=
+CHAT_FLAG=
+DRY_RUN=
+WATCH_URL=
 
 for arg in "$@"; do
     if [ "$arg" == "-c" ] || [ $arg == "--chat" ]; then CHAT_FLAG="1"; fi
@@ -26,11 +26,12 @@ done
 
 if [ -z $PLAYER ]; then
     if [ -f $(which vlc) ]; then
-        PLAYER=${$PLAYER-vlc}
+        PLAYER=vlc
     elif [ -f $(which smplayer) ]; then
-        PLAYER=${$PLAYER-smplayer}
+        PLAYER=smplayer
     elif [ -f $(which mpv) ]; then
-        PLAYER=${$PLAYER-mpv}
+        echo MPV
+        PLAYER=mpv
     fi
 fi
 
@@ -51,14 +52,14 @@ fi
 
 echo -e "Using \033[1;32m$PLAYER\033[0m to open \033[1;34mhttps://youtu.be/$WATCH_URL\033[0m"
 if [ ! -z "$CHAT_FLAG" ]; then
-    if [ -z $DRY_RUN ]; then
+    if [ -z "$DRY_RUN" ]; then
         xdg-open "https://www.youtube.com/live_chat?v=$WATCH_URL"
     else
         echo -e "\033[32mChat URL: \033[36mhttps://www.youtube.com/live_chat?v=$WATCH_URL\033[0m"
     fi
 fi
 
-if [ -z $DRY_RUN ]; then
+if [ -z "$DRY_RUN" ]; then
     exec $PLAYER "https://youtu.be/$WATCH_URL" > /dev/null &
     disown
 else
