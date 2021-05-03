@@ -8,9 +8,13 @@ function fish_greeting
 end
 
 # Spark for clear
-alias clear='/usr/bin/env clear; seq 1 (tput cols) | sort -R | spark | lolcat'
+alias clear='/usr/bin/env clear; seq 1 (tput cols) | sort -R | spark | lolcat -t'
 function fish_user_key_bindings
-    bind \cl 'clear; echo; echo; commandline -f repaint'
+    set clrStr 'clear; echo; echo; commandline -f repaint'
+    if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]
+        set clrStr 'clear; echo; echo; echo; commandline -f repaint'
+    end
+    bind \cl $clrStr 
 end
 
 # Bass
