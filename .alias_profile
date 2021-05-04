@@ -1,11 +1,17 @@
 #!/bin/bash
 
-alias ls='lsd --group-dirs first'
+if [ -f "$(which exa)" ]; then
+    alias ls='exa --color=always --group-directories-first --icons --git'
+    alias lt='ls -aT'
+elif [ -f "$(which lsd)" ]; then
+    alias ls='lsd --group-dirs first'
+    alias lt='ls --tree'
+fi
+
 alias l='ls -l'
 alias ll='l'
 alias la='ls -a'
 alias lla='ls -la'
-alias lt='ls --tree'
 
 alias ssh='env TERM=xterm-256color ssh'
 
