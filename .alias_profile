@@ -1,9 +1,9 @@
 #!/bin/bash
 
-if [ -f "$(which exa)" ]; then
+if command -v exa &> /dev/null; then
     alias ls='exa --color=always --group-directories-first --icons --git'
     alias lt='ls -aT'
-elif [ -f "$(which lsd)" ]; then
+elif command -v lsd &> /dev/null; then
     alias ls='lsd --group-dirs first'
     alias lt='ls --tree'
 fi

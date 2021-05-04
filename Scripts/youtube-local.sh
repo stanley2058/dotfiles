@@ -25,11 +25,11 @@ done
 
 
 if [ -z "$PLAYER" ]; then
-    if [ -f "$(which vlc)" ]; then
+    if command -v vlc &> /dev/null; then
         PLAYER=vlc
-    elif [ -f "$(which smplayer)" ]; then
+    elif command -v smplayer &> /dev/null; then
         PLAYER=smplayer
-    elif [ -f "$(which mpv)" ]; then
+    elif command -v mpv &> /dev/null; then
         PLAYER=mpv
     fi
 fi
