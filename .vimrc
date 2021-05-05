@@ -44,7 +44,6 @@ call vundle#begin()
     Plugin 'junegunn/goyo.vim'                           " Distraction-free viewing
     Plugin 'junegunn/limelight.vim'                      " Hyperfocus on a range
     Plugin 'junegunn/vim-emoji'                          " Vim needs emojis!
-
 call vundle#end()
 
 filetype plugin indent on    " required
@@ -250,3 +249,6 @@ set guioptions-=T  "remove toolbar
 set guioptions-=r  "remove right-hand scroll bar
 set guioptions-=L  "remove left-hand scroll bar
 
+" \ss for toggle spell check
+imap <Leader>ss <C-o>:setlocal spell! spelllang=en_us<CR>
+map <Leader>ss :setlocal spell! spelllang=en_us<CR>
