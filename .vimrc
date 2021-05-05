@@ -77,7 +77,12 @@ syntax enable
 let g:rehash256 = 1
 let g:rainbow_active = 1        " set to 0 if you want to enable it later via :RainbowToggle
 set ttimeoutlen=50
-set termguicolors               " set tgc for true color
+
+if exists('+termguicolors')     " enable 24bit color if support
+  set termguicolors
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Remap Keys
@@ -163,7 +168,7 @@ highlight Function         ctermfg=1    ctermbg=none    cterm=none
 " highlight TablineSel       ctermfg=0       ctermbg=247     cterm=none
 " highlight TablineFill      ctermfg=244     ctermbg=234     cterm=none
 " highlight CursorColumn     ctermfg=none    ctermbg=236     cterm=none
-" highlight CursorLine       ctermfg=none    ctermbg=236     cterm=none
+highlight CursorLine       ctermfg=none    ctermbg=236     cterm=none guibg=#303030
 " highlight ColorColumn      ctermfg=none    ctermbg=236     cterm=none
 " highlight Cursor           ctermfg=0       ctermbg=5       cterm=none
 " highlight htmlEndTag       ctermfg=114     ctermbg=none    cterm=none
