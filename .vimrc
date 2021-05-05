@@ -147,6 +147,7 @@ highlight PreProc          ctermfg=5    ctermbg=none    cterm=none
 highlight String           ctermfg=12   ctermbg=none    cterm=none
 highlight Number           ctermfg=1    ctermbg=none    cterm=none
 highlight Function         ctermfg=1    ctermbg=none    cterm=none
+highlight Visual           ctermbg=239  guibg=Grey30
 " highlight WildMenu         ctermfg=0       ctermbg=80      cterm=none
 " highlight Folded           ctermfg=103     ctermbg=234     cterm=none
 " highlight FoldColumn       ctermfg=103     ctermbg=234     cterm=none
@@ -168,7 +169,7 @@ highlight Function         ctermfg=1    ctermbg=none    cterm=none
 " highlight TablineSel       ctermfg=0       ctermbg=247     cterm=none
 " highlight TablineFill      ctermfg=244     ctermbg=234     cterm=none
 " highlight CursorColumn     ctermfg=none    ctermbg=236     cterm=none
-highlight CursorLine       ctermfg=none    ctermbg=236     cterm=none guibg=#303030
+highlight CursorLine       ctermfg=none    ctermbg=236     cterm=none guibg=Grey19
 " highlight ColorColumn      ctermfg=none    ctermbg=236     cterm=none
 " highlight Cursor           ctermfg=0       ctermbg=5       cterm=none
 " highlight htmlEndTag       ctermfg=114     ctermbg=none    cterm=none
@@ -210,7 +211,7 @@ map <Leader>tt :vert term<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Mouse Scrolling
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set mouse=nicr
+set mouse=ar
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Splits and Tabbed Files
