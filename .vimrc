@@ -75,8 +75,9 @@ set cursorline
 set clipboard=unnamedplus       " Copy/paste between vim and other programs.
 syntax enable
 let g:rehash256 = 1
-let g:rainbow_active = 1        "set to 0 if you want to enable it later via :RainbowToggle
+let g:rainbow_active = 1        " set to 0 if you want to enable it later via :RainbowToggle
 set ttimeoutlen=50
+set termguicolors               " set tgc for true color
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Remap Keys
@@ -123,7 +124,7 @@ let g:NERDTreeWinSize=38
 " => Colors and Theming
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 colorscheme dracula 
-highlight Normal guibg=NONE ctermbg=NONE
+highlight Normal           ctermbg=none guifg=#f8f8f2   guibg=#1e1f28
 highlight LineNr           ctermfg=8    ctermbg=none    cterm=none
 highlight CursorLineNr     ctermfg=10   ctermbg=8       cterm=none
 highlight VertSplit        ctermfg=0    ctermbg=8       cterm=none
@@ -169,6 +170,9 @@ highlight Function         ctermfg=1    ctermbg=none    cterm=none
 " highlight xmlEndTag        ctermfg=114     ctermbg=none    cterm=none
 
 let g:dracula_italic = 1
+
+let g:terminal_ansi_colors = ['#000000', '#ff5555', '#50fa7b', '#f0fa8b', '#bd92f8', '#ff78c5', '#8ae9fc', '#bbbbbb',
+                            \ '#545454', '#ff5454', '#50fa7b', '#f0fa8b', '#caa9fa', '#ff78c5', '#8ae9fc', '#ffffff']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vifm
