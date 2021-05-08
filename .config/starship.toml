@@ -2,6 +2,8 @@
 # add_newline = false
 
 #format = "[ ](blue)$all"
+#format = "[ ](yellow)$all"
+format = "[ ](cyan)$all"
 
 # Disable the package module, hiding it from the prompt completely
 [package]
