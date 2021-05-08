@@ -3,7 +3,7 @@
 
 #format = "[ ](blue)$all"
 #format = "[ ](yellow)$all"
-format = "[ ](cyan)$all"
+#format = "[ ](green)$all"
 
 # Disable the package module, hiding it from the prompt completely
 [package]
