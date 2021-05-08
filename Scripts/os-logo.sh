@@ -8,17 +8,17 @@ if [ -f "/etc/os-release" ]; then
 fi
 
 case "$distro" in
-    "Arch Linux") echo ""
+    "Arch Linux") echo -e "\033[34m\033[0m"
         ;;
-    "Manjaro") echo ""
+    "Manjaro") echo -e "\033[32m\033[0m"
         ;;
-    "Ubuntu") echo ""
+    "Ubuntu") echo -e "\033[31m\033[0m"
         ;;
-    "Fedora") echo ""
+    "Fedora") echo -e "\033[34m\033[0m"
         ;;
-    "Debian") echo ""
+    "Debian") echo -e "\033[32m\033[0m"
         ;;
-    *) echo ""
+    *) echo -e ""
         ;;
 esac
 
