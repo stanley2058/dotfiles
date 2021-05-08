@@ -2,7 +2,7 @@
 
 # Fish greet
 function fish_greeting
-    set system_logo ""
+    set system_logo ($HOME/Scripts/os-logo.sh)
     set greet_msg (printf "\033[34m%s \033[1;32m%s \033[1;36m%s \033[1;37m%s \033[0m" $system_logo (uname -rn) (date +"%r") (uptime -p))
     printf "%s\n%s\n" $greet_msg (awk -f $HOME/Scripts/color-bar.awk)
 end
