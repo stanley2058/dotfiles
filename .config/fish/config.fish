@@ -14,6 +14,8 @@ function spark_greeting
         set title_len (string length (greet_title | sed -r "s/\x1B\[([0-9]{1,3}(;[0-9]{1,2})?)?[mGK]//g"))
         set remaining (math (tput cols) - $title_len)
         seq 1 $remaining | sort -R | spark | lolcat -t
+    else
+        echo
     end 
 
     echo (awk -f $HOME/Scripts/color-bar.awk)
