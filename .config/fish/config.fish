@@ -7,17 +7,25 @@ function greet_title
     echo $greet_msg
 end
 
+function spark_greeting
+    set title_len (string length (greet_title | sed -r "s/\x1B\[([0-9]{1,3}(;[0-9]{1,2})?)?[mGK]//g"))
+    set remaining (math (tput cols) - $title_len)
+    printf "%s" (greet_title)
+    seq 1 $remaining | sort -R | spark | lolcat -t
+    echo (awk -f $HOME/Scripts/color-bar.awk)
+end
+
 function fish_greeting
-    printf "%s\n%s\n" (greet_title) (awk -f $HOME/Scripts/color-bar.awk)
+    spark_greeting
 end
 
 # Spark for clear
-alias clear='/usr/bin/env clear; seq 1 (tput cols) | sort -R | spark | lolcat -t'
+alias clear='/usr/bin/env clear; spark_greeting'
 function fish_user_key_bindings
     set clrStr 'clear; echo; echo; commandline -f repaint'
     if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]
         # set clrStr 'clear; echo; echo; echo; commandline -f repaint'
-        set clrStr '/usr/bin/env clear; greet_title; echo; echo; echo; commandline -f repaint'
+        set clrStr '/usr/bin/env clear; spark_greeting; echo; echo; echo; commandline -f repaint'
     end
     bind \cl $clrStr 
 end
