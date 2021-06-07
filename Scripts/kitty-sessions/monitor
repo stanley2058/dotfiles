@@ -2,4 +2,4 @@ title Monitor
 layout fat
 launch htop
 launch watch -n 1 sensors
-launch watch -n 1 "lscpu | grep MHz"
+launch watch -n 1 "cat /proc/cpuinfo | grep 'MHz' | awk '{ sum += $4; n++; str = sprintf(\"%s\n%s\", str, $0) } END { if (n > 0) print \"Avg. \" sum / n \" MHz\"; print str } '"
