@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if command -v exa &> /dev/null; then
-    alias ls='exa --color=always --group-directories-first --icons --git'
+    alias ls='exa --color=always --group-directories-first --icons --git -g'
     alias lt='ls -aT'
 elif command -v lsd &> /dev/null; then
     alias ls='lsd --group-dirs first'
