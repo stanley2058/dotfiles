@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-sudo pacman -S --needed git base-devel
+sudo pacman -S --noconfirm --needed git base-devel
 
 if ! command -v yay &> /dev/null; then
     git clone https://aur.archlinux.org/yay-bin.git
