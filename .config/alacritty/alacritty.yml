@@ -8,18 +8,18 @@ font:
   size: 12
   # The normal (roman) font face to use.
   normal:
-    family: OperatorMonoSSmLig Nerd Font
-    style: Book
+    family: STWBrew
+    style: Regular
 
   # The bold font face
   bold:
-    family: OperatorMonoSSmLig Nerd Font
+    family: STWBrew
     style: Bold
 
   # The italic font face
   italic:
-    family: OperatorMonoSSmLig Nerd Font
-    style: Book Italic
+    family: STWBrew
+    style: Italic
 
 background_opacity: 0.9
 
