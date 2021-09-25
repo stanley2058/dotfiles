@@ -1,0 +1,62 @@
+{
+  "bootloader": "grub-install",
+  "filesystem": "ext4",
+  "harddrive": {
+    "model": null,
+    "path": "$DRIVE",
+    "size": "$SIZE"
+  },
+  "timezone": "Asia/Taipei",
+  "mirror-region": {
+    "Taiwan": {
+      "https://free.nchc.org.tw/arch/$repo/os/$arch": true,
+      "https://shadow.ind.ntou.edu.tw/archlinux/$repo/os/$arch": true
+    }
+  },
+  "audio": "pulseaudio",
+  "custom-commands": [
+    "systemctl enable sshd",
+    "systemctl enable docker",
+    "usermod -aG docker $USER"
+  ],
+  "packages": [
+    "base-devel",
+    "git",
+    "openssh",
+    "htop",
+    "neofetch",
+    "gvim",
+    "cronie",
+    "docker",
+    "docker-compose",
+    "fish",
+    "zsh",
+    "starship",
+    "rsync",
+    "tmux",
+    "zip",
+    "unzip",
+    "unrar",
+    "wget",
+    "curl",
+    "jq",
+    "nginx"
+  ],
+  "kernels": ["linux"],
+  "superusers": {
+    "$USER": {
+      "!password": "$PASSWORD"
+    }
+  },
+  "!root-password": "$PASSWORD",
+  "hostname": "$HOSTNAME",
+  "keyboard-language": "us",
+  "nic": {
+    "NetworkManager": true
+  },
+  "ntp": true,
+  "profile": "minimal",
+  "sys-encoding": "utf-8",
+  "sys-language": "en_US",
+  "users": {}
+}
