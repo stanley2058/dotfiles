@@ -29,11 +29,6 @@ sed "s/\$USER/$NEW_USER/g; s/\$PASSWORD/$PASSWD/g; s/\$HOSTNAME/$NEW_HOSTNAME/g;
     archinstall.template.json > archinstall.json
 
 echo
-echo "Please review the created config:"
-
-cat archinstall.json | awk '{print "\033[90m"$0}'
-echo -e "\033[0m"
-
 printf "Modify the config? [y/N]: "
 read MODIFY
 
