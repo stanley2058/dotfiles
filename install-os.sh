@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+sed -i "s/#Parallel/Parallel/g; s/#Color/Color/g" /etc/pacman.conf
+
 printf "Hostname: "
 read NEW_HOSTNAME
 
