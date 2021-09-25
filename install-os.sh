@@ -25,7 +25,7 @@ read DRIVE
 printf "Drive size: "
 read SIZE
 
-sed "s/\$USER/$NEW_HOSTNAME/g; s/\$PASSWORD/$PASSWD/g; s/\$HOSTNAME/$NEW_HOSTNAME/g; s/\$DRIVE/$DRIVE/g; s/\$SIZE/$SIZE/g" \
+sed "s/\$USER/$NEW_USER/g; s/\$PASSWORD/$PASSWD/g; s/\$HOSTNAME/$NEW_HOSTNAME/g; s|\$DRIVE|$DRIVE|g; s/\$SIZE/$SIZE/g" \
     archinstall.template.json > archinstall.json
 
 echo
