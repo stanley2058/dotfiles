@@ -20,3 +20,8 @@ alias ssh='env TERM=xterm-256color ssh'
 alias wanip='dig +short myip.opendns.com @resolver4.opendns.com'
 
 alias gitlg="git log --graph --oneline --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'"
+
+alias cpumi="sudo cpupower frequency-set -g powersave &>/dev/null"
+alias cpuod="sudo cpupower frequency-set -g ondemand &>/dev/null"
+alias cpumx="sudo cpupower frequency-set -g performance &>/dev/null"
+alias cpusd="sudo cpupower frequency-set -g schedutil &>/dev/null"
