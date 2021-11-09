@@ -25,3 +25,5 @@ alias cpumi="sudo cpupower frequency-set -g powersave &>/dev/null"
 alias cpuod="sudo cpupower frequency-set -g ondemand &>/dev/null"
 alias cpumx="sudo cpupower frequency-set -g performance &>/dev/null"
 alias cpusd="sudo cpupower frequency-set -g schedutil &>/dev/null"
+
+alias ip="ip -c"
