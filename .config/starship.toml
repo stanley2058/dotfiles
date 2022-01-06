@@ -73,8 +73,8 @@ cherry_pick = "[ PICKING](bold red)"
 
 [git_status]
 conflicted = "ﲅ "
-ahead      = "×${count} "
-behind     = "×${count} "
+ahead      = " ×${count} "
+behind     = " ×${count} "
 diverged   = " ×${ahead_count} ×${behind_count} "
 untracked  = " ×${count} "
 stashed    = "ﰙ "
