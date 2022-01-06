@@ -18,8 +18,8 @@ format = "took [$duration]($style)"
 
 # These symbols will only show when battery levels are 20% or less
 [battery]
-charging_symbol = "⚡️ "
-discharging_symbol = "💀 "
+charging_symbol = " "
+discharging_symbol = " "
 
 [[battery.display]]  # "bold red" style when capacity is between 0% and 20%
 threshold = 20 
@@ -28,7 +28,7 @@ style = "bold red"
 # Clear visibility for exit codes
 [status]
 style = "bg:red"
-symbol = "💣"
+symbol = "  "
 format = '[$symbol\[$status\]]($style) '
 disabled = false
 
@@ -41,7 +41,7 @@ disabled = false
 
 [time]
 disabled = true
-format = '🕙[\[$time\]]($style) '
+format = ' [\[$time\]]($style) '
 time_format = "%T"
 
 [character]
@@ -49,41 +49,41 @@ success_symbol = "[❯](bold yellow)"
 error_symbol = "[✗](bold red) "
 
 [docker_context]
-format = "via [🐋 $context](blue bold)"
+format = "via [ $context](blue bold)"
 
 [kubernetes]
-symbol = "⛵ "
+symbol = "ﴱ "
 style = "dimmed green"
 disabled = false
 [kubernetes.context_aliases]
 "dev.local.cluster.k8s" = "dev"
 
 [git_branch]
-symbol = "🌱 "
+symbol = "שׂ "
 truncation_length = 4
 truncation_symbol = ""
 
 [git_commit]
 commit_hash_length = 4
-tag_symbol = "🔖 "
+tag_symbol = " "
 
 [git_state]
 format = '[\($state( $progress_current of $progress_total)\)]($style) '
-cherry_pick = "[🍒 PICKING](bold red)"
+cherry_pick = "[ PICKING](bold red)"
 
 [git_status]
-conflicted = "⚔️ "
-ahead = "🏎️ 💨×${count} "
-behind = "🐢×${count} "
-diverged = "🔱 🏎️ 💨×${ahead_count} 🐢×${behind_count} "
-untracked = "🛤️ ×${count} "
-stashed = "📦 "
-modified = "📝×${count} "
-staged = "🗃️ ×${count} "
-renamed = "📛×${count} "
-deleted = "🗑️ ×${count} "
-style = "bright-white"
-format = "$all_status$ahead_behind"
+conflicted = "ﲅ "
+ahead      = "×${count} "
+behind     = "×${count} "
+diverged   = " ×${ahead_count} ×${behind_count} "
+untracked  = " ×${count} "
+stashed    = "ﰙ "
+modified   = " ×${count} "
+staged     = "ﱐ ×${count} "
+renamed    = " ×${count} "
+deleted    = " ×${count} "
+style      = "bright-white"
+format     = "$all_status$ahead_behind"
 
 [hostname]
 format = "[$hostname]($style)\n"
