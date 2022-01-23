@@ -14,7 +14,7 @@ else
     set downloaded (youtube-dl --get-filename -o '%(title)s.%(ext)s' -x --audio-format "mp3" $argv[1])
     set downloaded (string replace -r '\.[^.]+$' '.mp3' "$downloaded")
     echo $downloaded
-    # youtube-dl -o '%(title)s.%(ext)s' -x --audio-format "mp3" $argv[1]
+    youtube-dl -o '%(title)s.%(ext)s' -x --audio-format "mp3" $argv[1]
 
     ffmpeg -i "$downloaded" \
         -metadata title="$title" \
