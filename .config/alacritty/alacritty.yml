@@ -2,26 +2,29 @@ window:
   dimensions:
     columns: 86
     lines: 26
+  opacity: 0.9
 
 font:
-  # The size to use.
   size: 12
-  # The normal (roman) font face to use.
   normal:
     family: STWBrew
     style: Regular
-
-  # The bold font face
   bold:
     family: STWBrew
     style: Bold
-
-  # The italic font face
   italic:
     family: STWBrew
     style: Italic
+  bold_italic:
+    family: STWBrew
+    style: Bold Italic
+  offset:
+    x: 0
+    y: 0
 
-background_opacity: 0.9
+cursor:
+  style:
+    blinking: On
 
 # Colors (Dracula)
 colors:
