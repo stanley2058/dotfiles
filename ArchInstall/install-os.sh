@@ -33,7 +33,7 @@ read -r DRIVE
 echo
 echo "[0] Server  - TTY"
 echo "[1] Desktop - KDE"
-printf "Select a profile to install [0-1]:"
+printf "Select a profile to install [0-1]: "
 read -r PROFILE_TO_USE
 
 set TEMPLATE
@@ -61,8 +61,10 @@ printf "Proceed to install? [Y/n]: "
 read -r RUN_INSTALL
 
 if [ "$RUN_INSTALL" == "n" ] || [ "$RUN_INSTALL" == "N" ] || [ "$RUN_INSTALL" == "no" ] || [ "$RUN_INSTALL" == "No" ]; then
-    echo "Exiting, nothing has been installed."
-    exit 1
+    echo "Exiting, your config:"
+    cat archinstall.json
+    rm archinstall.json
+    exit 0
 fi
 
 archinstall --config archinstall.json
