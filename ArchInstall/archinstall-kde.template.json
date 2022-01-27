@@ -8,11 +8,6 @@
     "kernels": [
         "linux"
     ],
-    "superusers": {
-        "$USER": {
-        "!password": "$PASSWORD"
-        }
-    },
     "keyboard-layout": "us",
     "mirror-region": {
         "Taiwan": {
@@ -26,6 +21,7 @@
     },
     "ntp": true,
     "packages": [
+        "sudo",
         "plasma-meta",
         "sddm",
         "plasma-wayland-session",
@@ -121,6 +117,8 @@
         "maven"
     ],
     "custom-commands": [
+        "useradd -m $USER",
+        "echo $USER:$PASSWORD | chpasswd",
         "systemctl enable sshd",
         "systemctl enable docker",
         "usermod -aG docker $USER",
@@ -129,7 +127,6 @@
     "profile": {
         "path": "/usr/lib/python3.10/site-packages/archinstall/profiles/xorg.py"
     },
-    "swap": false,
     "sys-encoding": "utf-8",
     "sys-language": "en_US",
     "timezone": "Asia/Taipei"
