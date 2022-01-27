@@ -24,11 +24,11 @@ if [ "$PASSWD" != "$CONF_PASSWD" ]; then
     exit 1
 fi
 
+lsblk
+echo
+
 printf "Drive to format: "
 read -r DRIVE
-
-printf "Drive size: "
-read -r SIZE
 
 echo
 echo "[0] Server  - TTY"
