@@ -45,8 +45,7 @@
         "unrar",
         "wget",
         "curl",
-        "jq",
-        "nginx"
+        "jq"
     ],
     "custom-commands": [
         "systemctl enable sshd",

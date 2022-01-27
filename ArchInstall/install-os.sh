@@ -27,7 +27,7 @@ fi
 lsblk
 echo
 
-printf "Drive to format: "
+printf "Drive to format (Full path, starting with /dev): "
 read -r DRIVE
 
 echo
