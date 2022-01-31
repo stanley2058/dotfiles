@@ -11,10 +11,10 @@ else
         set title "$album (covered by $artist)"
     end
 
-    set downloaded (youtube-dl --get-filename -o '%(title)s.%(ext)s' -x --audio-format "mp3" $argv[1])
+    set downloaded (yt-dlp --get-filename -o '%(title)s.%(ext)s' -x --audio-format "mp3" $argv[1])
     set downloaded (string replace -r '\.[^.]+$' '.mp3' "$downloaded")
     echo $downloaded
-    youtube-dl -o '%(title)s.%(ext)s' -x --audio-format "mp3" $argv[1]
+    yt-dlp -o '%(title)s.%(ext)s' -x --audio-format "mp3" $argv[1]
 
     ffmpeg -i "$downloaded" \
         -metadata title="$title" \
