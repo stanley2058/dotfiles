@@ -44,6 +44,8 @@ call vundle#begin()
     Plugin 'junegunn/goyo.vim'                           " Distraction-free viewing
     Plugin 'junegunn/limelight.vim'                      " Hyperfocus on a range
     Plugin 'junegunn/vim-emoji'                          " Vim needs emojis!
+"{{ Copy to clipboard on Wayland }}
+    Plugin 'jasonccox/vim-wayland-clipboard'             " Wayland clipboard support
 call vundle#end()
 
 filetype plugin indent on    " required
@@ -228,6 +230,9 @@ noremap <silent> <C-Left> :vertical resize +3<CR>
 noremap <silent> <C-Right> :vertical resize -3<CR>
 noremap <silent> <C-Up> :resize +3<CR>
 noremap <silent> <C-Down> :resize -3<CR>
+
+" Copy to system clipboard on Ctrl + C
+vnoremap <C-c> "+y
 
 " Change 2 split windows from vert to horiz or horiz to vert
 map <Leader>th <C-w>t<C-w>H
