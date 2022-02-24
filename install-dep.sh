@@ -2,7 +2,7 @@
 
 ./Scripts/install-aur-helper.sh
 
-sudo pacman -S --noconfirm --needed git base-devel tmux gvim lolcat fish zsh fzf starship exa lsd
+sudo pacman -S --noconfirm --needed git base-devel tmux gvim lolcat fish zsh fzf starship exa lsd ranger
 
 if command -v yay &> /dev/null; then 
     yay -S --needed --noconfirm fisher
