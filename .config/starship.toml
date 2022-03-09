@@ -87,3 +87,8 @@ format     = "$all_status$ahead_behind"
 
 [hostname]
 format = "[$hostname]($style)\n"
+
+[localip]
+ssh_only = true
+format = "@[$localipv4](bold red) "
+disabled = true
