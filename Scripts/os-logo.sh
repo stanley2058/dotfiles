@@ -11,7 +11,7 @@ fi
 
 # check if is a ssh session
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-    prefix="\033[93m撚\033[0m"
+    prefix="\033[1m\033[96m[\033[92m \033[94mSSH\033[96m]\033[0m "
 fi
 
 case "$distro" in
