@@ -1,8 +1,16 @@
 #!/usr/bin/fish
 
 # Fish greet
+function ssh_prefix
+    if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ];
+        echo -e "\033[1;96m[\033[1;92m \033[1;94mSSH\033[1;96m]\033[0m "
+    else
+        echo ""
+    end
+end
+
 function greet_title
-    set system_logo ($HOME/Scripts/os-logo.sh)
+    set system_logo (printf "%s%s" (ssh_prefix) ($HOME/Scripts/os-logo.sh))
     set greet_msg (printf "%s \033[1;32m%s \033[1;36m%s \033[1;37m%s \033[0m" $system_logo (uname -rn) (LC_ALL=en_US.utf8 date +"%r") (uptime -p))
     echo $greet_msg
 end
