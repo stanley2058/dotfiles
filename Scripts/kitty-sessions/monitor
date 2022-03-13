@@ -2,5 +2,6 @@ title Monitor
 layout fat
 launch htop
 launch radeontop
-launch watch -tn 0.5 "sensors | grep -A7 'zenpower'; sensors | grep -A10 'amdgpu'"
-launch watch -tn 0.5 "cat /proc/cpuinfo | grep 'MHz' | awk -f $HOME/Scripts/kitty-sessions/cpu_mhz.awk"
+# launch watch -tn 0.1 "sensors | grep -A7 'zenpower'; sensors | grep -A10 'amdgpu'"
+# launch watch -tn 0.1 "cat /proc/cpuinfo | grep 'MHz' | awk -f $HOME/Scripts/kitty-sessions/cpu_mhz.awk"
+launch sh -c "$HOME/Scripts/kitty-sessions/cpu_freq.sh"
