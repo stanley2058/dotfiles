@@ -15,7 +15,7 @@ case "$distro" in
         ;;
     "Ubuntu")       logo="\033[31m\033[0m"
         ;;
-    "Fedora")       logo="\033[34m\033[0m"
+    "Fedora Linux") logo="\033[34m\033[0m"
         ;;
     "Debian")       logo="\033[32m\033[0m"
         ;;
