@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# alias vim to vimx (gvim) or nvim
+if command -v vimx &> /dev/null; then
+    alias vim="vimx"
+fi
+if command -v nvim &> /dev/null; then
+    alias vim="nvim"
+fi
+
 if command -v exa &> /dev/null; then
     alias ls='exa --color=always --group-directories-first --icons --git -g'
     alias lt='ls -aT'
@@ -27,3 +35,5 @@ alias cpumx="sudo cpupower frequency-set -g performance &>/dev/null"
 alias cpusd="sudo cpupower frequency-set -g schedutil &>/dev/null"
 
 alias ip="ip -c"
+
+alias lg="lazygit"
