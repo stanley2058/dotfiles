@@ -25,8 +25,8 @@ case "$distro" in
         fi
         ;;
     "Ubuntu")
-        ;;
-    "Debian")
+        sudo apt install zsh fish tmux neovim ranger exa fzf
+        sudo snap install lolcat-c starship
         ;;
     "Fedora Linux")
         sudo dnf install tmux gvim fish zsh fzf starship exa lsd ranger neovim lolcat
