@@ -3,7 +3,8 @@
 # Fish greet
 function greet_title
     set system_logo ($HOME/Scripts/os-logo.sh)
-    set greet_msg (printf "%s \033[1;32m%s \033[1;36m%s \033[1;37m%s \033[0m" $system_logo (uname -rn) (LC_ALL=en_US.utf8 date +"%T") (uptime -p))
+    set uptime_pretty (uptime -p | sed -E 's/ minute[s]*/m/; s/ hour[s]*/h/; s/ day[s]*/d/; s/ week[s]*/w/; s/ year[s]*/y/')
+    set greet_msg (printf "%s \033[1;32m%s \033[1;36m%s \033[1;37m%s \033[0m" $system_logo (uname -rn) (LC_ALL=en_US.utf8 date +"%T") $uptime_pretty)
     echo $greet_msg
 end
 
