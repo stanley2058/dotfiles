@@ -27,14 +27,20 @@ function fish_greeting
 end
 
 # Spark for clear
-alias clear='/usr/bin/env clear; spark_greeting'
+function clear
+    /usr/bin/env clear
+    spark_greeting
+end
+
 function fish_user_key_bindings
-    set clrStr 'clear; echo; echo; commandline -f repaint'
+    set clear_cmd 'clear; printf "\n\n"; commandline -f repaint'
     if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]
-        # set clrStr 'clear; echo; echo; echo; commandline -f repaint'
-        set clrStr '/usr/bin/env clear; spark_greeting; echo; echo; echo; commandline -f repaint'
+        set clear_cmd 'clear; printf "\n\n\n"; commandline -f repaint'
     end
-    bind \cl $clrStr 
+
+    bind -M insert \cl $clear_cmd
+    bind -m insert \cl $clear_cmd
+    bind \cl $clear_cmd
 end
 
 # Bass
@@ -59,7 +65,6 @@ set fish_color_autosuggestion '#7d7d7d'
 set fish_color_command brgreen
 set fish_color_error red
 set fish_color_param brcyan
-
 
 # Init Starship
 starship init fish | source
