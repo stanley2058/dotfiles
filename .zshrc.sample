@@ -38,7 +38,10 @@ source $HOME/.env_profile
 
 eval "$(starship init zsh)"
 
+# ENV overwrite
+SHELL=$(which zsh)
 
+# Custom functions
 function greet_title() {
     SYS_LOGO=$($HOME/Scripts/os-logo.sh)
     UPTIME=$(uptime -p | sed -E 's/ minute[s]*/m/; s/ hour[s]*/h/; s/ day[s]*/d/; s/ week[s]*/w/; s/ year[s]*/y/')
