@@ -33,3 +33,9 @@ case "$distro" in
         ;;
 esac
 
+
+# Install spark
+mkdir -p $HOME/.local/bin
+curl -sL https://raw.githubusercontent.com/holman/spark/master/spark > $HOME/.local/bin/spark
+chmod +x $HOME/.local/bin/spark
+
