@@ -37,3 +37,40 @@ source $HOME/.alias_profile
 source $HOME/.env_profile
 
 eval "$(starship init zsh)"
+
+
+function greet_title() {
+    SYS_LOGO=$($HOME/Scripts/os-logo.sh)
+    UPTIME=$(uptime -p | sed -E 's/ minute[s]*/m/; s/ hour[s]*/h/; s/ day[s]*/d/; s/ week[s]*/w/; s/ year[s]*/y/')
+    echo $(printf "%s \033[1;32m%s \033[1;36m%s \033[1;37m%s \033[0m" "$SYS_LOGO" "$(uname -rn)" "$(LC_ALL=en_US.utf8 date +'%T')" "$UPTIME")
+}
+
+function spark_greeting() {
+    TITLE=$(greet_title)
+    printf "%s" $TITLE
+
+    if command -v lolcat &> /dev/null; then
+        UNCOLOR=$(echo $TITLE | sed -r "s/\x1B\[([0-9]{1,3}(;[0-9]{1,2})?)?[mGK]//g")
+        REMAINING="$(($(tput cols)-${#UNCOLOR}))"
+        seq 1 $REMAINING | sort -R | spark | lolcat -b -r
+    else
+        echo
+    fi
+
+    echo $(awk -f $HOME/Scripts/color-bar.awk | sed -z "s/\n//g")
+}
+
+function clear() {
+    /usr/bin/env clear
+    spark_greeting
+}
+
+function clear_greet() {
+    clear
+    tput cup 1 0
+    zle accept-line
+}
+
+zle -N clear_greet
+bindkey "^l" clear_greet
+spark_greeting
