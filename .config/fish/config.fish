@@ -47,6 +47,12 @@ end
 bass source /etc/profile
 bass source $HOME/.alias_profile
 bass source $HOME/.env_profile
+if [ -f "/usr/share/nvm/init-nvm.sh" ]
+    bass source /usr/share/nvm/init-nvm.sh
+else if [ -f "$HOME/.nvm/nvm.sh" ]
+    bass source "$HOME/.nvm/nvm.sh"
+end
+
 
 # Init conda if exist
 if [ -f $HOME/miniconda3/bin/conda ]
