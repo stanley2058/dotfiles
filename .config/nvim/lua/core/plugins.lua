@@ -14,21 +14,24 @@ local packer_bootstrap = ensure_packer()
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
   use 'EdenEast/nightfox.nvim'
+  use 'bluz71/vim-nightfly-colors'
   use 'nvim-tree/nvim-tree.lua'
   use 'nvim-tree/nvim-web-devicons'
   use 'nvim-lualine/lualine.nvim'
   use 'nvim-treesitter/nvim-treesitter'
   use 'gelguy/wilder.nvim'
   use 'wakatime/vim-wakatime'
+  use 'nvim-lua/plenary.nvim'
+  use 'mfussenegger/nvim-dap'
   use {
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
-    'neovim/nvim-lspconfig'
+    'neovim/nvim-lspconfig',
+    'simrat39/rust-tools.nvim'
   }
   use {
     'nvim-telescope/telescope.nvim',
     tag = '0.1.0',
-    requires = { { 'nvim-lua/plenary.nvim' } }
   }
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

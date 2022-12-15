@@ -1,7 +1,7 @@
 require('lualine').setup {
   options = {
     icons_enable = true,
-    theme = 'nightfox',
+    theme = 'nightfly',
   },
   sections = {
     lualine_a = {
