@@ -19,6 +19,7 @@ return require('packer').startup(function(use)
   use 'nvim-lualine/lualine.nvim'
   use 'nvim-treesitter/nvim-treesitter'
   use 'gelguy/wilder.nvim'
+  use 'wakatime/vim-wakatime'
   use {
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
