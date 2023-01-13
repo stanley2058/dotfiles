@@ -37,3 +37,5 @@ alias cpusd="sudo cpupower frequency-set -g schedutil &>/dev/null"
 alias ip="ip -c"
 
 alias lg="lazygit"
+
+alias compose-update="docker-compose pull && docker-compose down && docker-compose up -d"
