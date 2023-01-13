@@ -18,8 +18,8 @@ fi
 
 alias l='ls -l'
 alias ll='l'
-alias la='ls -a'
-alias lla='ls -la'
+alias la='ls -aa'
+alias lla='ls -laa'
 alias l.='la | grep -E "\."'
 alias ll.='lla | grep -E "\."'
 
