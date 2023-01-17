@@ -30,3 +30,4 @@ vim.o.scrolloff = 8
 vim.o.signcolumn = "yes"
 
 vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false, scope="cursor"})]]
+vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
