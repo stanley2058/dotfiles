@@ -5,7 +5,7 @@ window:
   opacity: 0.9
 
 font:
-  size: 12
+  size: 13
   normal:
     family: STWBrew
     style: Regular
@@ -26,31 +26,43 @@ cursor:
   style:
     blinking: On
 
-# Colors (Dracula)
+# Colors
 colors:
   # Default colors
   primary:
-    background: '0x1e1f28'
-    foreground: '0xf8f8f2'
- 
+    background:        '#011627'
+    foreground:        '#acb4c2'
+    bright_foreground: '#eeeeee'
+
+  # Cursor colors
+  cursor:
+    text:   '#080808'
+    cursor: '#9ca1aa'
+
+  # Selection colors
+  selection:
+    text:       '#080808'
+    background: '#b2ceee'
+
   # Normal colors
   normal:
-    black:   '0x000000'
-    red:     '0xff5555'
-    green:   '0x50fa7b'
-    yellow:  '0xf1fa8c'
-    blue:    '0xbd93f9'
-    magenta: '0xff79c6'
-    cyan:    '0x8be9fd'
-    white:   '0xbbbbbb'
- 
+    black:   '#1d3b53'
+    red:     '#fc514e'
+    green:   '#a1cd5e'
+    yellow:  '#e3d18a'
+    blue:    '#82aaff'
+    magenta: '#c792ea'
+    cyan:    '#7fdbca'
+    white:   '#a1aab8'
+
   # Bright colors
   bright:
-    black:   '0x555555'
-    red:     '0xff5555'
-    green:   '0x50fa7b'
-    yellow:  '0xf1fa8c'
-    blue:    '0xcaa9fa'
-    magenta: '0xff79c6'
-    cyan:    '0x8be9fd'
-    white:   '0xffffff'
+    black:   '#7c8f8f'
+    red:     '#ff5874'
+    green:   '#21c7a8'
+    yellow:  '#ecc48d'
+    blue:    '#82aaff'
+    magenta: '#ae81ff'
+    cyan:    '#7fdbca'
+    white:   '#d6deeb'
+
