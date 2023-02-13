@@ -55,8 +55,10 @@ end)
 
 lsp.setup()
 
+local lspconfig = require("lspconfig");
+
 -- define global variable 'vim'
-require('lspconfig').lua_ls.setup {
+lspconfig.lua_ls.setup({
     settings = {
         Lua = {
             diagnostics = {
@@ -64,4 +66,47 @@ require('lspconfig').lua_ls.setup {
             }
         }
     }
-}
+})
+
+-- setup inlayHints
+lspconfig.tsserver.setup({
+    settings = {
+        typescript = {
+            inlayHints = {
+                includeInlayParameterNameHints = 'all',
+                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                includeInlayFunctionParameterTypeHints = true,
+                includeInlayVariableTypeHints = true,
+                includeInlayPropertyDeclarationTypeHints = true,
+                includeInlayFunctionLikeReturnTypeHints = true,
+                includeInlayEnumMemberValueHints = true,
+            }
+        },
+        javascript = {
+            inlayHints = {
+                includeInlayParameterNameHints = 'all',
+                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                includeInlayFunctionParameterTypeHints = true,
+                includeInlayVariableTypeHints = true,
+                includeInlayPropertyDeclarationTypeHints = true,
+                includeInlayFunctionLikeReturnTypeHints = true,
+                includeInlayEnumMemberValueHints = true,
+            }
+        }
+    }
+})
+
+lspconfig.gopls.setup({
+    settings = {
+        gopls = {
+            hints = {
+                assignVariableTypes = true,
+                compositeLiteralFields = true,
+                constantValues = true,
+                functionTypeParameters = true,
+                parameterNames = true,
+                rangeVariableTypes = true,
+            }
+        }
+    }
+})
