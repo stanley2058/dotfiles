@@ -3,7 +3,7 @@ local lsp = require("lsp-zero")
 lsp.preset("recommended")
 
 lsp.ensure_installed({
-    "sumneko_lua",
+    "lua_ls",
     "bashls",
     "gopls",
     "rust_analyzer",
@@ -56,7 +56,7 @@ end)
 lsp.setup()
 
 -- define global variable 'vim'
-require('lspconfig').sumneko_lua.setup {
+require('lspconfig').lua_ls.setup {
     settings = {
         Lua = {
             diagnostics = {
