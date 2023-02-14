@@ -62,15 +62,16 @@ if [ -f $HOME/miniconda3/bin/conda ]
     # <<< conda initialize <<<
 end
 
-# Env vars
-set -U FZF_LEGACY_KEYBINDINGS 0
-
 # Fish colors
 set fish_color_normal brcyan
 set fish_color_autosuggestion '#7d7d7d'
 set fish_color_command brgreen
 set fish_color_error red
 set fish_color_param brcyan
+
+# fzf
+set fzf_fd_opts --hidden --exclude=.git
+fzf_configure_bindings
 
 # Init Starship
 starship init fish | source
