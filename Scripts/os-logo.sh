@@ -13,6 +13,8 @@ case "$distro" in
         ;;
     "Manjaro")      logo="\033[32m\033[0m"
         ;;
+    "EndeavourOS")  logo="\033[34m\033[0m"
+        ;;
     "Ubuntu")       logo="\033[31m\033[0m"
         ;;
     "Fedora Linux") logo="\033[34m\033[0m"
