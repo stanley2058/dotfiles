@@ -5,7 +5,7 @@ sudo pacman -S --noconfirm --needed git base-devel
 if ! command -v yay &> /dev/null; then
     git clone https://aur.archlinux.org/yay-bin.git
     cd yay-bin
-    makepkg -si
+    makepkg -si --noconfirm
     cd ..
     rm -rf yay-bin
 fi
@@ -13,7 +13,7 @@ fi
 if ! command -v paru &> /dev/null; then
     git clone https://aur.archlinux.org/paru-bin.git
     cd paru-bin
-    makepkg -si
+    makepkg -si --noconfirm
     cd ..
     rm -rf paru-bin
 fi

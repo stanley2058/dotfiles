@@ -8,7 +8,7 @@ fi
 case "$distro" in
     "Arch Linux")
         ./Scripts/install-aur-helper.sh
-        sudo pacman -S --noconfirm --needed git base-devel tmux gvim fish zsh fzf starship exa lsd ranger neovim fd bat
+        sudo pacman -S --noconfirm --needed git base-devel tmux gvim fish zsh fzf starship exa lsd ranger neovim fd bat lazygit
         if command -v paru &> /dev/null; then 
             paru -S --needed --noconfirm c-lolcat fisher
         elif command -v yay &> /dev/null; then
@@ -17,7 +17,7 @@ case "$distro" in
         ;;
     "Manjaro")
         ./Scripts/install-aur-helper.sh 
-        sudo pacman -S --noconfirm --needed git base-devel tmux gvim fish zsh fzf starship exa lsd ranger neovim fd bat
+        sudo pacman -S --noconfirm --needed git base-devel tmux gvim fish zsh fzf starship exa lsd ranger neovim fd bat lazygit
         if command -v paru &> /dev/null; then 
             paru -S --needed --noconfirm c-lolcat fisher
         elif command -v yay &> /dev/null; then
