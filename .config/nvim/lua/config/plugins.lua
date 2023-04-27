@@ -79,6 +79,8 @@ return require('packer').startup(function(use)
         end
     }
 
+    use("lewis6991/hover.nvim")
+
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
     if packer_bootstrap then
