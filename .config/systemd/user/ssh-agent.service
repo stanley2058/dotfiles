@@ -1,0 +1,13 @@
+[Unit]
+Description=SSH agent (ssh-agent)
+
+[Service]
+Type=simple
+Environment=SSH_AUTH_SOCK=%t/ssh-agent.socket
+Environment=DISPLAY=:0
+ExecStart=ssh-agent -D -a $SSH_AUTH_SOCK
+ExecStop=kill -15 $MAINPID
+
+[Install]
+WantedBy=default.target
+
