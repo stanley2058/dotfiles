@@ -15,6 +15,7 @@
 #set -ga terminal-overrides "*:kUP3=\e[1;9A,*:kDN3=\e[1;9B,*:kRIT3=\e[1;9C,*:kLFT3=\e[1;9D"
 set -g default-terminal "xterm-256color"
 set -ga terminal-overrides 'rxvt-unicode*:sitm@,ritm@'
+set-option -sa terminal-overrides ",xterm*:Tc"
 
 # -- windows & pane creation ---------------------------------------------------
 
