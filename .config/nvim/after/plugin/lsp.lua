@@ -49,6 +49,9 @@ lsp.on_attach(function(client, bufnr)
 	lsp.default_keymaps({ buffer = bufnr })
 	local opts = { buffer = bufnr, remap = false }
 
+	vim.keymap.set("n", "K", function()
+		vim.lsp.buf.hover()
+	end, opts)
 	vim.keymap.set("n", "gd", function()
 		vim.lsp.buf.definition()
 	end, opts)
@@ -125,10 +128,7 @@ lsp.format_on_save({
 lsp.setup()
 
 local null_ls = require("null-ls")
-local null_opts = lsp.build_options("null-ls", {})
-
 null_ls.setup({
-	on_attach = null_opts.on_attach,
 	sources = {
 		null_ls.builtins.formatting.stylua,
 		null_ls.builtins.formatting.prettierd,
