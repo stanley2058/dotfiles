@@ -80,6 +80,10 @@ return require('packer').startup(function(use)
     }
 
     use("lewis6991/hover.nvim")
+    use {
+        "jose-elias-alvarez/null-ls.nvim",
+        require = { "nvim-lua/plenary.nvim" },
+    }
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins

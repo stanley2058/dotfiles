@@ -10,6 +10,28 @@ lsp.ensure_installed({
     "tsserver"
 })
 
+-- Fix Undefined global 'vim'
+lsp.configure('lua_ls', {
+    cmd = { 'lua-language-server' },
+    settings = {
+        Lua = {
+            runtime = {
+                version = 'LuaJIT',
+                path = vim.split(package.path, ';'),
+            },
+            diagnostics = {
+                globals = { 'vim' },
+            },
+            workspace = {
+                library = {
+                    [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+                    [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
+                },
+            },
+        },
+    },
+})
+
 local cmp = require('cmp')
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_mappings = lsp.defaults.cmp_mappings({
@@ -24,10 +46,10 @@ lsp.setup_nvim_cmp({
 })
 
 lsp.on_attach(function(client, bufnr)
+    lsp.default_keymaps({ buffer = bufnr })
     local opts = { buffer = bufnr, remap = false }
 
     vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
-    vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
     vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
     vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
     vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
@@ -53,20 +75,50 @@ lsp.on_attach(function(client, bufnr)
     })
 end)
 
+lsp.format_on_save({
+    servers = {
+        ['bashls'] = { 'bash' },
+        ['dockerls'] = { 'dockerfile' },
+        ['lua_ls'] = { 'lua' },
+        ['rust_analyzer'] = { 'rust' },
+        ['gopls'] = { 'go' },
+        ["null-ls"] = {
+            "javascript",
+            "javascriptreact",
+            "typescript",
+            "typescriptreact",
+            "vue",
+            "css",
+            "scss",
+            "less",
+            "html",
+            "json",
+            "jsonc",
+            "yaml",
+            "markdown",
+            "markdown.mdx",
+            "graphql",
+            "handlebars"
+        },
+    },
+})
+
 lsp.setup()
 
-local lspconfig = require("lspconfig");
 
--- define global variable 'vim'
-lspconfig.lua_ls.setup({
-    settings = {
-        Lua = {
-            diagnostics = {
-                globals = { 'vim' }
-            }
-        }
-    }
+local null_ls = require('null-ls')
+local null_opts = lsp.build_options('null-ls', {})
+
+null_ls.setup({
+    on_attach = null_opts.on_attach,
+    sources = {
+        null_ls.builtins.formatting.prettierd,
+        null_ls.builtins.completion.spell,
+    },
 })
+
+
+local lspconfig = require("lspconfig");
 
 -- setup inlayHints
 lspconfig.tsserver.setup({
