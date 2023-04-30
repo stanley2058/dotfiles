@@ -82,7 +82,10 @@ return require("packer").startup(function(use)
 	use("lewis6991/hover.nvim")
 	use({
 		"jose-elias-alvarez/null-ls.nvim",
-		require = { "nvim-lua/plenary.nvim" },
+		requires = {
+			{ "nvim-lua/plenary.nvim" },
+			{ "jay-babu/mason-null-ls.nvim" },
+		},
 	})
 
 	-- Automatically set up your configuration after cloning packer.nvim

@@ -4,12 +4,9 @@ lsp.preset("recommended")
 
 lsp.ensure_installed({
 	"lua_ls",
-	"stylua",
-	"shfmt",
 	"bashls",
 	"gopls",
 	"rust_analyzer",
-	"prettierd",
 	"tsserver",
 })
 
@@ -137,6 +134,13 @@ null_ls.setup({
 		null_ls.builtins.formatting.prettierd,
 		null_ls.builtins.formatting.shfmt,
 		null_ls.builtins.completion.spell,
+	},
+})
+require("mason-null-ls").setup({
+	ensure_installed = {
+		"stylua",
+		"shfmt",
+		"prettierd",
 	},
 })
 
