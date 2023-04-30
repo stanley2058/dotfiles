@@ -10,10 +10,10 @@ vim.o.cursorline = true
 vim.o.hlsearch = true
 vim.o.incsearch = true
 
-vim.o.clipboard = 'unnamedplus'
+vim.o.clipboard = "unnamedplus"
 
 vim.o.autoread = true
-vim.o.backspace = '2'
+vim.o.backspace = "2"
 
 vim.o.smarttab = true
 vim.o.smartindent = true
@@ -29,4 +29,4 @@ vim.o.colorcolumn = "80"
 vim.o.scrolloff = 8
 vim.o.signcolumn = "yes"
 
-vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false, scope="cursor"})]]
+vim.cmd([[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false, scope="cursor"})]])

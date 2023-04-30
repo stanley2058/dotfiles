@@ -1,1 +1,1 @@
-vim.keymap.set('n', '<Leader>lg', ':LazyGit<CR>', { silent = true })
+vim.keymap.set("n", "<Leader>lg", ":LazyGit<CR>", { silent = true })
