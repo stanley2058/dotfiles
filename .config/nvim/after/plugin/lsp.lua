@@ -189,3 +189,11 @@ lspconfig.gopls.setup({
 		},
 	},
 })
+
+lspconfig.yamlls.setup({
+	settings = {
+		yaml = {
+			keyOrdering = false,
+		},
+	},
+})
