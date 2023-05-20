@@ -1,19 +1,19 @@
 #!/bin/bash
 
 # alias vim to vimx (gvim) or nvim
-if command -v vimx &> /dev/null; then
-    alias vim="vimx"
+if command -v vimx &>/dev/null; then
+	alias vim="vimx"
 fi
-if command -v nvim &> /dev/null; then
-    alias vim="nvim"
+if command -v nvim &>/dev/null; then
+	alias vim="nvim"
 fi
 
-if command -v exa &> /dev/null; then
-    alias ls='exa --color=always --group-directories-first --icons --git -g'
-    alias lt='ls -aT'
-elif command -v lsd &> /dev/null; then
-    alias ls='lsd --group-dirs first'
-    alias lt='ls --tree'
+if command -v exa &>/dev/null; then
+	alias ls='exa --color=always --group-directories-first --icons --git -g'
+	alias lt='ls -aT'
+elif command -v lsd &>/dev/null; then
+	alias ls='lsd --group-dirs first'
+	alias lt='ls --tree'
 fi
 
 alias l='ls -l'
@@ -38,4 +38,4 @@ alias ip="ip -c"
 
 alias lg="lazygit"
 
-alias compose-update="docker-compose pull && docker-compose down && docker-compose up -d"
+alias compose-update="docker-compose pull && docker-compose up -d"
