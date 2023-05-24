@@ -39,3 +39,5 @@ alias ip="ip -c"
 alias lg="lazygit"
 
 alias compose-update="docker-compose pull && docker-compose up -d"
+
+alias lgain="loudgain -I 3 -k -s i *.mp3"
