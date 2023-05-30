@@ -2216,5 +2216,10 @@ map shift+cmd+/ open_url https://sw.kovidgoyal.net/kitty/
 
 #: }}}
 
-# Catppuccin-Mocha
+#include nightfly.conf
+
+
+# BEGIN_KITTY_THEME
+# Catppuccin-Latte
 include current-theme.conf
+# END_KITTY_THEME
