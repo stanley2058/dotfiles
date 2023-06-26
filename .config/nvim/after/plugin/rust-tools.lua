@@ -6,10 +6,17 @@ rt.setup({
 			-- Code action groups
 			vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
 		end,
-		tools = {
-			inlay_hints = {
-				auto = false,
+		settings = {
+			["rust-analyzer"] = {
+				check = {
+					command = "clippy",
+				},
 			},
+		},
+	},
+	tools = {
+		inlay_hints = {
+			auto = false,
 		},
 	},
 })
