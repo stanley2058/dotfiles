@@ -2,9 +2,23 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
-vim.keymap.set("x", "<leader>p", '"_dP')
+local wk = require("which-key")
 
-vim.keymap.set("n", "<leader>d", '"_d')
-vim.keymap.set("v", "<leader>d", '"_d')
-
-vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+wk.register({
+    d = {
+        '"_d',
+        "Delete to void",
+    },
+    x = {
+        ["+"] = {
+            "<cmd>!chmod +x %<CR>",
+            "Mark file executable",
+        },
+    },
+}, { prefix = "<leader>" })
+wk.register({
+    d = {
+        '"_d',
+        "Delete to void",
+    },
+}, { prefix = "<leader>", mode = "v" })
