@@ -3,13 +3,11 @@
 -- Add any additional options here
 
 vim.g.mapleader = " "
-vim.o.termguicolors = true
 
 vim.o.showcmd = true
 vim.o.laststatus = 2
 vim.o.number = true
 vim.o.relativenumber = true
-vim.o.cursorline = true
 
 vim.o.hlsearch = true
 vim.o.incsearch = true
@@ -28,7 +26,16 @@ vim.o.shiftround = true
 vim.o.expandtab = true
 
 vim.o.updatetime = 50
-vim.o.colorcolumn = "80"
-
 vim.o.scrolloff = 8
-vim.o.signcolumn = "yes"
+
+-- diagnostic with rounded borders
+vim.diagnostic.config({
+    float = { border = "rounded" },
+})
+
+if not vim.g.vscode then
+    vim.o.termguicolors = true
+    vim.o.cursorline = true
+    vim.o.signcolumn = "yes"
+    vim.o.colorcolumn = "80"
+end

@@ -7,6 +7,10 @@ return {
                 sources = {
                     null_ls.builtins.formatting.stylua,
                     null_ls.builtins.formatting.prettierd,
+                    null_ls.builtins.code_actions.eslint_d,
+                    null_ls.builtins.diagnostics.eslint_d,
+                    null_ls.builtins.formatting.eslint_d,
+                    null_ls.builtins.formatting.sql_formatter,
                     null_ls.builtins.formatting.shfmt.with({
                         args = {
                             "--indent",
@@ -14,6 +18,12 @@ return {
                         },
                     }),
                     null_ls.builtins.completion.spell,
+                },
+            })
+            require("crates").setup({
+                null_ls = {
+                    enabled = true,
+                    name = "crates.nvim",
                 },
             })
         end,
@@ -25,6 +35,8 @@ return {
                 "stylua",
                 "shfmt",
                 "prettierd",
+                "eslint_d",
+                "sql_formatter",
             },
         },
     },
@@ -109,6 +121,7 @@ return {
     },
     {
         "simrat39/rust-tools.nvim",
+        event = "VeryLazy",
         opts = {
             server = {
                 settings = {

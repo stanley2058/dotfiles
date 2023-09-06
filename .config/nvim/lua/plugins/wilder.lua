@@ -1,13 +1,5 @@
 return {
     {
-        "folke/noice.nvim",
-        opts = {
-            cmdline = {
-                view = "cmdline",
-            },
-        },
-    },
-    {
         "gelguy/wilder.nvim",
         init = function()
             local wilder = require("wilder")

@@ -4,11 +4,18 @@ return {
         name = "catppuccin",
         lazy = false,
         priority = 1000,
-        config = function()
-            vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
-            require("catppuccin").setup()
-            vim.cmd([[colorscheme catppuccin]])
-        end,
+        opts = {
+            flavour = "mocha",
+            intergations = {
+                cmp = true,
+                gitsigns = true,
+                nvimtree = true,
+                treesitter = true,
+                noice = true,
+                notify = true,
+                which_key = true,
+            },
+        },
     },
     {
         "LazyVim/LazyVim",
