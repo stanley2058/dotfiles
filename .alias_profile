@@ -2,18 +2,22 @@
 
 # alias vim to vimx (gvim) or nvim
 if command -v vimx &>/dev/null; then
-	alias vim="vimx"
+    alias vim="vimx"
 fi
 if command -v nvim &>/dev/null; then
-	alias vim="nvim"
+    alias vim="nvim"
 fi
 
-if command -v exa &>/dev/null; then
-	alias ls='exa --color=always --group-directories-first --icons --git -g'
-	alias lt='ls -aT'
+if command -v eza &>/dev/null; then
+    alias ls='eza --color=always --group-directories-first --icons --git -g'
+    alias lt='ls -aT'
+elif command -v exa &>/dev/null; then
+    # for legacy exa binary
+    alias ls='exa --color=always --group-directories-first --icons --git -g'
+    alias lt='ls -aT'
 elif command -v lsd &>/dev/null; then
-	alias ls='lsd --group-dirs first'
-	alias lt='ls --tree'
+    alias ls='lsd --group-dirs first'
+    alias lt='ls --tree'
 fi
 
 alias l='ls -l'
