@@ -17,7 +17,6 @@ return {
                             4,
                         },
                     }),
-                    null_ls.builtins.completion.spell,
                 },
             })
             require("crates").setup({

@@ -28,6 +28,7 @@ return {
         opts = {
             ["*"] = { names = false }, -- Highlight all files, but customize some others.
             css = { rgb_fn = true }, -- Enable parsing rgb(...) functions in css.
+            scss = { rgb_fn = true },
         },
     },
 }
