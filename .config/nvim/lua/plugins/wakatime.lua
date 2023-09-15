@@ -4,4 +4,5 @@ if true then return {} end
 
 return {
     "wakatime/vim-wakatime",
+    event = "VeryLazy",
 }

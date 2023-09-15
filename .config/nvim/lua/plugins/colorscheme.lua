@@ -15,6 +15,7 @@ return {
                 notify = true,
                 which_key = true,
             },
+            kitty = true,
         },
     },
     {
