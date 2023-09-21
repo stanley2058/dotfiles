@@ -17,6 +17,7 @@ return {
                             4,
                         },
                     }),
+                    null_ls.builtins.formatting.google_java_format,
                 },
             })
             require("crates").setup({
@@ -114,6 +115,7 @@ return {
                             unknownAtRules = "ignore",
                         },
                     },
+                    keyOrdering = false,
                 },
             },
         },
