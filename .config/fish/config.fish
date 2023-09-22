@@ -32,6 +32,17 @@ function clear
     spark_greeting
 end
 
+function notify-done
+    notify-send \
+        -t 5000 \
+        -i gtg-task-done \
+        -h 'string:desktop-entry:kitty' \
+        -a 'Terminal Task Notifier' \
+        'Task completed' \
+        'Scheduled task done, please check for result.'
+    tput bel
+end
+
 function fish_user_key_bindings
     set clear_cmd 'clear; printf "\n\n"; commandline -f repaint'
     if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]
