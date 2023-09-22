@@ -49,9 +49,15 @@ function fish_user_key_bindings
         set clear_cmd 'clear; printf "\n\n\n"; commandline -f repaint'
     end
 
+    set clear_no_scrollback "printf '\e[2J\e[3J\e[H'; $clear_cmd"
+
     bind -M insert \cl $clear_cmd
     bind -m insert \cl $clear_cmd
     bind \cl $clear_cmd
+
+    bind -M insert \ek $clear_no_scrollback
+    bind -m insert \ek $clear_no_scrollback
+    bind \ek $clear_no_scrollback
 end
 
 # Bass
