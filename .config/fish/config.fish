@@ -11,13 +11,13 @@ end
 function spark_greeting
     printf "%s" (greet_title)
 
-    if command -v lolcat &> /dev/null
+    if command -v lolcat &>/dev/null
         set title_len (string length (greet_title | sed -r "s/\x1B\[([0-9]{1,3}(;[0-9]{1,2})?)?[mGK]//g"))
         set remaining (math (tput cols) - $title_len)
         seq 1 $remaining | sort -R | spark | lolcat -b -r
     else
         echo
-    end 
+    end
 
     echo (awk -f $HOME/Scripts/color-bar.awk)
 end
@@ -51,6 +51,12 @@ function fish_user_key_bindings
 
     set clear_no_scrollback "printf '\e[2J\e[3J\e[H'; $clear_cmd"
 
+    set unipicker "unipicker --copy > /dev/null"
+
+    bind -M insert \cu $unipicker
+    bind -m insert \cu $unipicker
+    bind \cu $unipicker
+
     bind -M insert \cl $clear_cmd
     bind -m insert \cl $clear_cmd
     bind \cl $clear_cmd
@@ -75,7 +81,7 @@ end
 if [ -f $HOME/miniconda3/bin/conda ]
     # >>> conda initialize >>>
     # !! Contents within this block are managed by 'conda init' !!
-    eval $HOME/miniconda3/bin/conda "shell.fish" "hook" $argv | source
+    eval $HOME/miniconda3/bin/conda "shell.fish" hook $argv | source
     # <<< conda initialize <<<
 end
 
