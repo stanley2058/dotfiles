@@ -28,6 +28,8 @@ vim.o.expandtab = true
 vim.o.updatetime = 50
 vim.o.scrolloff = 8
 
+vim.o.shell = "/usr/bin/bash"
+
 -- diagnostic with rounded borders
 vim.diagnostic.config({
     float = { border = "rounded" },
