@@ -1,0 +1,34 @@
+import = ["/home/stanley/.config/alacritty/catppuccin/catppuccin-mocha.toml"]
+
+[cursor.style]
+blinking = "On"
+
+[font]
+size = 13
+
+[font.bold]
+family = "STWBrew"
+style = "Bold"
+
+[font.bold_italic]
+family = "STWBrew"
+style = "Bold Italic"
+
+[font.italic]
+family = "STWBrew"
+style = "Italic"
+
+[font.normal]
+family = "STWBrew"
+style = "Regular"
+
+[font.offset]
+x = 0
+y = 0
+
+[window]
+opacity = 0.9
+
+[window.dimensions]
+columns = 86
+lines = 26
