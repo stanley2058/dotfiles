@@ -12,8 +12,6 @@ vim.o.relativenumber = true
 vim.o.hlsearch = true
 vim.o.incsearch = true
 
-vim.o.clipboard = "unnamedplus"
-
 vim.o.autoread = true
 vim.o.backspace = "2"
 

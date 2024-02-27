@@ -1,5 +1,8 @@
 return {
     {
+        "nvimtools/none-ls-extras.nvim",
+    },
+    {
         "nvimtools/none-ls.nvim",
         opts = function()
             local null_ls = require("null-ls")
@@ -7,9 +10,6 @@ return {
                 sources = {
                     null_ls.builtins.formatting.stylua,
                     null_ls.builtins.formatting.prettierd,
-                    null_ls.builtins.code_actions.eslint_d,
-                    null_ls.builtins.diagnostics.eslint_d,
-                    null_ls.builtins.formatting.eslint_d,
                     null_ls.builtins.formatting.sql_formatter,
                     null_ls.builtins.formatting.shfmt.with({
                         args = {
@@ -18,7 +18,9 @@ return {
                         },
                     }),
                     null_ls.builtins.formatting.google_java_format,
-                    null_ls.builtins.diagnostics.typos,
+                    require("none-ls.code_actions.eslint_d"),
+                    require("none-ls.diagnostics.eslint_d"),
+                    require("none-ls.formatting.eslint_d"),
                 },
             })
             require("crates").setup({
@@ -123,6 +125,20 @@ return {
                         },
                     },
                     keyOrdering = false,
+                },
+                typos_lsp = {
+                    config = {
+                        -- Logging level of the language server. Logs appear in :LspLog. Defaults to error.
+                        cmd_env = { RUST_LOG = "error" },
+                    },
+                    init_options = {
+                        -- Custom config. Used together with any workspace config files, taking precedence for
+                        -- settings declared in both. Equivalent to the typos `--config` cli argument.
+                        -- config = "~/code/typos-lsp/crates/typos-lsp/tests/typos.toml",
+                        -- How typos are rendered in the editor, eg: as errors, warnings, information, or hints.
+                        -- Defaults to error.
+                        diagnosticSeverity = "Hint",
+                    },
                 },
             },
         },
