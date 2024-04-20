@@ -18,9 +18,39 @@ return {
                         },
                     }),
                     null_ls.builtins.formatting.google_java_format,
-                    require("none-ls.code_actions.eslint_d"),
-                    require("none-ls.diagnostics.eslint_d"),
-                    require("none-ls.formatting.eslint_d"),
+                    require("none-ls.code_actions.eslint_d").with({
+                        condition = function(utils)
+                            return utils.root_has_file({
+                                ".eslintrc",
+                                ".eslintrc.cjs",
+                                ".eslintrc.yaml",
+                                ".eslintrc.yml",
+                                ".eslintrc.json",
+                            })
+                        end,
+                    }),
+                    require("none-ls.diagnostics.eslint_d").with({
+                        condition = function(utils)
+                            return utils.root_has_file({
+                                ".eslintrc",
+                                ".eslintrc.cjs",
+                                ".eslintrc.yaml",
+                                ".eslintrc.yml",
+                                ".eslintrc.json",
+                            })
+                        end,
+                    }),
+                    require("none-ls.formatting.eslint_d").with({
+                        condition = function(utils)
+                            return utils.root_has_file({
+                                ".eslintrc",
+                                ".eslintrc.cjs",
+                                ".eslintrc.yaml",
+                                ".eslintrc.yml",
+                                ".eslintrc.json",
+                            })
+                        end,
+                    }),
                 },
             })
             require("crates").setup({
