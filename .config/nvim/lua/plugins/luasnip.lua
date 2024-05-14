@@ -3,4 +3,7 @@ return {
     opts = {
         history = false,
     },
+    keys = function()
+        return {}
+    end,
 }

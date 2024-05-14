@@ -15,7 +15,11 @@ return {
                 notify = true,
                 which_key = true,
             },
-            kitty = true,
+            custom_highlights = function(colors)
+                return {
+                    Operator = { fg = colors.mauve },
+                }
+            end,
         },
     },
     {

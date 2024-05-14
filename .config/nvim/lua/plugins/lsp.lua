@@ -84,7 +84,6 @@ return {
                 "bash-language-server",
                 "rust-analyzer",
                 "gopls",
-                "typescript-language-server",
             },
         },
     },
@@ -98,33 +97,6 @@ return {
                 enabled = false,
             },
             servers = {
-                tsserver = {
-                    typescript = {
-                        inlayHints = {
-                            includeInlayParameterNameHints = "all",
-                            includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                            includeInlayFunctionParameterTypeHints = true,
-                            includeInlayVariableTypeHints = true,
-                            includeInlayPropertyDeclarationTypeHints = true,
-                            includeInlayFunctionLikeReturnTypeHints = true,
-                            includeInlayEnumMemberValueHints = true,
-                        },
-                    },
-                    javascript = {
-                        inlayHints = {
-                            includeInlayParameterNameHints = "all",
-                            includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                            includeInlayFunctionParameterTypeHints = true,
-                            includeInlayVariableTypeHints = true,
-                            includeInlayPropertyDeclarationTypeHints = true,
-                            includeInlayFunctionLikeReturnTypeHints = true,
-                            includeInlayEnumMemberValueHints = true,
-                        },
-                    },
-                    root_dir = function(...)
-                        return require("lspconfig.util").root_pattern(".git")(...)
-                    end,
-                },
                 gopls = {
                     hints = {
                         assignVariableTypes = true,
@@ -157,15 +129,13 @@ return {
                     keyOrdering = false,
                 },
                 typos_lsp = {
-                    config = {
-                        -- Logging level of the language server. Logs appear in :LspLog. Defaults to error.
-                        cmd_env = { RUST_LOG = "error" },
-                    },
+                    -- Logging level of the language server. Logs appear in :LspLog. Defaults to error.
+                    cmd_env = { RUST_LOG = "error" },
                     init_options = {
                         -- Custom config. Used together with any workspace config files, taking precedence for
                         -- settings declared in both. Equivalent to the typos `--config` cli argument.
                         -- config = "~/code/typos-lsp/crates/typos-lsp/tests/typos.toml",
-                        -- How typos are rendered in the editor, eg: as errors, warnings, information, or hints.
+                        -- How typos are rendered in the editor, can be one of an Error, Warning, Info or Hint.
                         -- Defaults to error.
                         diagnosticSeverity = "Hint",
                     },

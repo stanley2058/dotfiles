@@ -1,10 +1,21 @@
 return {
     {
         "hrsh7th/nvim-cmp",
+        dependencies = {
+            { "roobert/tailwindcss-colorizer-cmp.nvim", config = true },
+        },
         opts = function()
             vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
             local cmp = require("cmp")
             local defaults = require("cmp.config.default")()
+
+            cmp.setup.filetype({ "sql" }, {
+                sources = {
+                    { name = "vim-dadbod-completion" },
+                    { name = "buffer" },
+                },
+            })
+
             return {
                 completion = {
                     completeopt = "menu,menuone,noinsert",
@@ -36,12 +47,12 @@ return {
                     { name = "crates" },
                 }),
                 formatting = {
-                    format = function(_, item)
+                    format = function(entry, item)
                         local icons = require("lazyvim.config").icons.kinds
                         if icons[item.kind] then
                             item.kind = icons[item.kind] .. item.kind
                         end
-                        return item
+                        return require("tailwindcss-colorizer-cmp").formatter(entry, item)
                     end,
                 },
                 experimental = {
