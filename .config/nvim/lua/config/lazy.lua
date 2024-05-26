@@ -14,7 +14,11 @@ require("lazy").setup({
         -- { import = "lazyvim.plugins.extras.lang.typescript" },
         -- { import = "lazyvim.plugins.extras.lang.json" },
         -- { import = "lazyvim.plugins.extras.ui.mini-animate" },
+        { import = "lazyvim.plugins.extras.coding.mini-surround" },
         { import = "lazyvim.plugins.extras.lsp.none-ls" },
+        { import = "lazyvim.plugins.extras.lang.go" },
+        { import = "lazyvim.plugins.extras.lang.rust" },
+        { import = "lazyvim.plugins.extras.lang.tailwind" },
         -- import/override with your plugins
         { import = "plugins" },
     },

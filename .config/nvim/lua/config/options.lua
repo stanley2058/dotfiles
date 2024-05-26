@@ -39,3 +39,6 @@ if not vim.g.vscode then
     vim.o.signcolumn = "yes"
     vim.o.colorcolumn = "80"
 end
+
+vim.filetype.add({ extension = { templ = "templ" } })
+vim.filetype.add({ extension = { ejs = "html" } })

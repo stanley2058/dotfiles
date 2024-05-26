@@ -88,4 +88,9 @@ return {
             },
         }, { prefix = "<leader>", mode = "v" })
     end,
+    opts = {
+        completion = {
+            cmp = { enabled = true },
+        },
+    },
 }
