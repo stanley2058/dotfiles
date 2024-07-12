@@ -2,6 +2,8 @@ return {
     {
         "hrsh7th/nvim-cmp",
         dependencies = {
+            { "hrsh7th/cmp-buffer", lazy = false },
+            { "hrsh7th/cmp-path", lazy = false },
             { "roobert/tailwindcss-colorizer-cmp.nvim", config = true },
         },
         opts = function()
@@ -9,6 +11,7 @@ return {
             local cmp = require("cmp")
             local defaults = require("cmp.config.default")()
 
+            ---@type cmp.Setup
             cmp.setup.filetype({ "sql" }, {
                 sources = {
                     { name = "vim-dadbod-completion" },
@@ -16,13 +19,14 @@ return {
                 },
             })
 
+            ---@type cmp.ConfigSchema
             return {
                 completion = {
                     completeopt = "menu,menuone,noinsert",
                 },
                 snippet = {
-                    expand = function(args)
-                        require("luasnip").lsp_expand(args.body)
+                    expand = function(item)
+                        return LazyVim.cmp.expand(item.body)
                     end,
                 },
                 mapping = cmp.mapping.preset.insert({
@@ -34,19 +38,28 @@ return {
                     ["<M-.>"] = cmp.mapping.complete(),
                     ["<C-e>"] = cmp.mapping.abort(),
                     ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+                    ["<C-a>"] = cmp.mapping.confirm({ select = true }),
                     ["<S-CR>"] = cmp.mapping.confirm({
                         behavior = cmp.ConfirmBehavior.Replace,
                         select = true,
                     }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
                 }),
                 sources = cmp.config.sources({
-                    { name = "nvim_lsp" },
+                    {
+                        name = "nvim_lsp",
+                        entry_filter = function(entry)
+                            return require("cmp.types").lsp.CompletionItemKind[entry:get_kind()] ~= "Text"
+                        end,
+                    },
                     { name = "crates" },
-                    { name = "luasnip" },
-                    { name = "buffer" },
+                    { name = "snippets" },
                     { name = "path" },
+                }, {
+                    { name = "buffer" },
                 }),
                 formatting = {
+                    expandable_indicator = true,
+                    fields = { "abbr", "kind", "menu" },
                     format = function(entry, item)
                         local icons = require("lazyvim.config").icons.kinds
                         if icons[item.kind] then

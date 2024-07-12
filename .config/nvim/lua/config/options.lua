@@ -38,6 +38,7 @@ if not vim.g.vscode then
     vim.o.cursorline = true
     vim.o.signcolumn = "yes"
     vim.o.colorcolumn = "80"
+    vim.o.spell = true
 end
 
 vim.filetype.add({ extension = { templ = "templ" } })

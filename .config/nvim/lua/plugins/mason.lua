@@ -5,8 +5,6 @@ return {
             ensure_installed = {
                 "stylua",
                 "shfmt",
-                "prettierd",
-                "eslint_d",
                 "sql_formatter",
             },
         },
@@ -17,7 +15,6 @@ return {
             ensure_installed = {
                 "stylua",
                 "shfmt",
-                "prettierd",
                 "lua-language-server",
                 "bash-language-server",
                 "rust-analyzer",
