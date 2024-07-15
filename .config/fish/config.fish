@@ -98,3 +98,8 @@ fzf_configure_bindings
 
 # Init Starship
 starship init fish | source
+enable_transience
+
+if type -q zoxide
+    zoxide init fish | source
+end

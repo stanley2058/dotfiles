@@ -44,16 +44,5 @@ alias lg="lazygit"
 
 alias compose-update="docker-compose pull && docker-compose up -d"
 
-alias lgain="loudgain -I 3 -k -s i *.mp3"
-alias plgain="parallel loudgain -I 3 -k -s i {} ::: *.mp3"
-
-notify-done() (
-    notify-send \
-        -t 5000 \
-        -i gtg-task-done \
-        -h 'string:desktop-entry:kitty' \
-        -a 'Terminal Task Notifier' \
-        'Task completed' \
-        'Scheduled task done, please check for result.'
-    tput bel
-)
+alias rgain="rsgain custom -s i **/*.{mp3,flac,ogg,wav}"
+alias prgain="parallel rsgain custom -s i {} ::: **/*.{mp3,flac,ogg,wav}"

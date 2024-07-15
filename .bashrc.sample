@@ -1,0 +1,15 @@
+#!/bin/bash
+
+source /etc/profile
+source $HOME/.alias_profile
+source $HOME/.env_profile
+
+[ -z "$NVM_DIR" ] && export NVM_DIR="$HOME/.nvm"
+source /usr/share/nvm/nvm.sh
+source /usr/share/nvm/bash_completion
+source /usr/share/nvm/install-nvm-exec
+
+eval "$(starship init bash)"
+if command -v zoxide &>/dev/null; then
+    eval "$(zoxide init bash)"
+fi
