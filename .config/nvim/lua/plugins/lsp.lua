@@ -17,6 +17,11 @@ return {
                 enabled = false,
             },
             servers = lsp_server_config,
+            setup = {
+                rust_analyzer = function()
+                    return true
+                end,
+            },
         },
     },
 }
