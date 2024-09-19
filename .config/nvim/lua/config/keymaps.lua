@@ -4,40 +4,16 @@
 
 local wk = require("which-key")
 
-local commonMapping = {
-    d = {
-        '"_d',
-        "Delete to void",
-    },
-    g = {
-        -- browse
-        l = {
-            "<cmd>GitLink<cr>",
-            "Copy git permlink to clipboard",
-        },
-        L = {
-            "<cmd>GitLink!<cr>",
-            "Open git permlink in browser",
-        },
+wk.add({
+    {
+        mode = { "n", "v" },
+        { "<leader>d", '"_d', desc = "Delete to void" },
+        -- link
+        { "<leader>gl", "<cmd>GitLink<cr>", desc = "Copy git permlink to clipboard" },
+        { "<leader>gL", "<cmd>GitLink!<cr>", desc = "Open git permlink in browser" },
         -- blame
-        b = {
-            "<cmd>GitLink blame<cr>",
-            "Copy git blame link to clipboard",
-        },
-        B = {
-            "<cmd>GitLink! blame<cr>",
-            "Open git blame link in browser",
-        },
+        { "<leader>gb", "<cmd>GitLink blame<cr>", desc = "Copy git blame link to clipboard" },
+        { "<leader>gB", "<cmd>GitLink! blame<cr>", desc = "Open git blame link in browser" },
     },
-}
-
-wk.register(commonMapping, { prefix = "<leader>" })
-wk.register(commonMapping, { prefix = "<leader>", mode = "v" })
-wk.register({
-    x = {
-        ["+"] = {
-            "<cmd>!chmod +x %<CR>",
-            "Mark file executable",
-        },
-    },
-}, { prefix = "<leader>" })
+    { "<leader>x+", "<cmd>!chmod +x %<CR>", desc = "Mark file executable" },
+})

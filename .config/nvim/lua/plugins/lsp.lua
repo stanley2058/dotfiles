@@ -21,6 +21,19 @@ return {
                 rust_analyzer = function()
                     return true
                 end,
+
+                tailwindcss = function(_, opts)
+                    opts.settings = {
+                        tailwindCSS = {
+                            experimental = {
+                                classRegex = {
+                                    { "cm\\(([^)]*)\\)", "[\"'`]([^\"'`]*)[\"'`]" },
+                                    { "(?:twMerge|twJoin)\\(([^;]*)[\\);]", "[`'\"`]([^'\"`;]*)[`'\"`]" },
+                                },
+                            },
+                        },
+                    }
+                end,
             },
         },
     },
