@@ -10,14 +10,18 @@ Installation
 
 Requirements:
 
-  - tmux **`>= 2.3`** (soon `>= 2.4`) running inside Linux, Mac, OpenBSD, Cygwin
-    or WSL
-  - awk, perl and sed
+  - tmux **`>= 2.6`** running inside Linux, Mac, OpenBSD, Cygwin or WSL
+  - awk, perl (with Time::HiRes support) and sed
   - outside of tmux, `$TERM` must be set to `xterm-256color`
 
-To install, run the following from your terminal: (you may want to backup your
-existing `~/.tmux.conf` first)
+⚠️ Before installing, you may want to backup your existing configuration.
 
+You can install Oh my tmux! at any of the following locations:
+- `~`
+- `$XDG_CONFIG_HOME/tmux`
+- `~/.config/tmux`
+
+Installing in `~`:
 ```
 $ cd
 $ git clone https://github.com/gpakosz/.tmux.git
@@ -25,28 +29,39 @@ $ ln -s -f .tmux/.tmux.conf
 $ cp .tmux/.tmux.conf.local .
 ```
 
-💡 You can clone the repository anywhere you want, provided you create the
-proper `~/.tmux.conf` symlink and you copy the `.tmux.conf.local` sample file in
-your home directory:
-
+Installing in `$XDG_CONFIG_HOME/tmux`:
 ```
-$ git clone https://github.com/gpakosz/.tmux.git /path/to/oh-my-tmux
-$ ln -s -f /path/to/oh-my-tmux/.tmux.conf ~/.tmux.conf
-$ cp /path/to/oh-my-tmux/.tmux.conf.local ~/.tmux.conf.local
+$ git clone https://github.com/gpakosz/.tmux.git "/path/to/oh-my-tmux"
+$ mkdir -p "$XDG_CONFIG_HOME/tmux"
+$ ln -s "/path/to/oh-my-tmux/.tmux.conf" "$XDG_CONFIG_HOME/tmux/tmux.conf"
+$ cp "/path/to/oh-my-tmux/.tmux.conf.local" "$XDG_CONFIG_HOME/tmux/tmux.conf.local"
 ```
 
-Then proceed to [customize] your `~/.tmux.conf.local` copy.
+Installing in `~/.config/tmux`:
+```
+$ git clone https://github.com/gpakosz/.tmux.git "/path/to/oh-my-tmux"
+$ mkdir -p "~/.config/tmux"
+$ ln -s "/path/to/oh-my-tmux/.tmux.conf" "~/.config/tmux/tmux.conf"
+$ cp "/path/to/oh-my-tmux/.tmux.conf.local" "~/.config/tmux/tmux.conf.local"
+```
+⚠️ When installing `$XDG_CONFIG_HOME/tmux` or `~/.config/tmux`, the configuration
+file names don't have a leading `.` character.
 
-[customize]: #configuration
+❗️ You should never alter the main `.tmux.conf` or `tmux.conf` file. If you do,
+you're on your own. Instead, every customization should happen in your
+`.tmux.conf.local` or `tmux.conf.local` customization file copy.
 
 If you're a Vim user, setting the `$EDITOR` environment variable to `vim` will
 enable and further customize the vi-style key bindings (see tmux manual).
 
-If you're new to tmux, I recommend you read [tmux 2: Productive Mouse-Free
+If you're new to tmux, I recommend you to read [tmux 2: Productive Mouse-Free
 Development][bhtmux2] by [@bphogan].
 
-[bhtmux2]: https://pragprog.com/book/bhtmux2/tmux-2
+Now proceed to [adjust] your `.local` customization file copy.
+
+[bhtmux2]: https://pragprog.com/titles/bhtmux2/tmux-2
 [@bphogan]: https://twitter.com/bphogan
+[adjust]: #configuration
 
 Troubleshooting
 ---------------
@@ -70,23 +85,23 @@ Troubleshooting
    This can also happen on macOS when using iTerm2 and "Use Unicode version 9
    character widths" is enabled in `Preferences... > Profiles > Text`
 
-   For that reason, the default `~/.tmux.conf.local` file stopped using Unicode
-   characters for which width changed in between Unicode 8.0 and 9.0 standards,
-   as well as Emojis.
+   For that reason, the default sample `.local` customization file stopped using
+   Unicode characters for which width changed in between Unicode 8.0 and 9.0
+   standards, as well as Emojis.
 
  - **I installed Powerline and/or (patched) fonts but can't see Powerline
    symbols.**
 
    First, you don't need to install Powerline. You only need fonts patched with
    Powerline symbols or the standalone `PowerlineSymbols.otf` font. Then make
-   sure your `~/.tmux.conf.local` copy uses the right code points for
+   sure your `.local` customization file copy uses the Powerline code points for
    `tmux_conf_theme_left_separator_XXX` values.
 
- - **I'm using Bash On Windows (WSL), colors and Powerline look are broken.**
+ - **I'm using Bash On Windows (WSL), colors and the Powerline look are broken.**
 
    There is currently a [bug][1681] in the new console powering Bash On Windows
    preventing text attributes (bold, underscore, ...) to combine properly with
-   colors. The workaround is to search your `~/.tmux.conf.local` copy and
+   colors. The workaround is to search your `.local` customization file copy and
    replace attributes with `'none'`.
 
    Also, until Window's console replaces its GDI based render with a DirectWrite
@@ -105,24 +120,21 @@ Features
  - [maximize any pane to a new window with `<prefix> +`][maximize-pane]
  - SSH/Mosh aware username and hostname status line information
  - mouse mode toggle with `<prefix> m`
- - automatic usage of [`reattach-to-user-namespace`][reattach-to-user-namespace]
-   if available
  - laptop battery status line information
  - uptime status line information
  - optional highlight of focused pane
  - configurable new windows and panes behavior (optionally retain current path)
  - SSH/Mosh aware split pane (reconnects to remote server)
- - copy to OS clipboard (needs [`reattach-to-user-namespace`][reattach-to-user-namespace]
-   on macOS, `xsel` or `xclip` on Linux)
+ - copy to OS clipboard (needs `xsel`, `xclip`, or `wl-copy` on Linux)
  - support for 4-digit hexadecimal Unicode characters
  - [Facebook PathPicker][] integration if available
- - [Urlview][] integration if available
+ - [Urlscan][] (preferred) or [Urlview][] integration if available
 
 [Powerline]: https://github.com/Lokaltog/powerline
 [maximize-pane]: http://pempek.net/articles/2013/04/14/maximizing-tmux-pane-new-window/
-[reattach-to-user-namespace]: https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard
 [Facebook PathPicker]: https://facebook.github.io/PathPicker/
 [Urlview]: https://packages.debian.org/stable/misc/urlview
+[Urlscan]: https://github.com/firecat53/urlscan
 
 The "maximize any pane to a new window with `<prefix> +`" feature is different
 from builtin `resize-pane -Z` as it allows you to further split a maximized
@@ -151,8 +163,8 @@ list of key bindings:
 
 This configuration uses the following bindings:
 
- - `<prefix> e` opens `~/.tmux.conf.local` with the editor defined by the
-   `$EDITOR` environment variable (defaults to `vim` when empty)
+ - `<prefix> e` opens the `.local` customization file copy with the editor
+   defined by the `$EDITOR` environment variable (defaults to `vim` when empty)
  - `<prefix> r` reloads the configuration
  - `C-l` clears both the screen and the tmux history
 
@@ -173,8 +185,8 @@ This configuration uses the following bindings:
 
  - `<prefix> m` toggles mouse mode on or off
 
- - `<prefix> U` launches Urlview (if available)
- - `<prefix> F` launches Facebook PathPicker (if available)
+ - `<prefix> U` launches Urlscan (preferred) or Urlview, if available
+ - `<prefix> F` launches Facebook PathPicker, if available
 
  - `<prefix> Enter` enters copy-mode
  - `<prefix> b` lists the paste-buffers
@@ -198,14 +210,16 @@ Configuration
 -------------
 
 While this configuration tries to bring sane default settings, you may want to
-customize it further to your needs. Instead of altering the `~/.tmux.conf` file
-and diverging from upstream, the proper way is to edit the `~/.tmux.conf.local`
-file.
+customize it further to your needs.
 
-Please refer to the sample `.tmux.conf.local` file to know more about variables
-you can adjust to alter different behaviors. Pressing `<prefix> e` will open
-`~/.tmux.conf.local` with the editor defined by the `$EDITOR` environment
-variable (defaults to `vim` when empty).
+❗️ Again, you should never alter the main `.tmux.conf` or `tmux.conf` file.
+If you do, you're on your own.
+
+Please refer to the sample `.local` customization file to know more about the
+variables that allow you to alter different behaviors. Upon successful
+installation, pressing `<prefix> e` will open your `.local` customization file
+copy with the editor defined by the `$EDITOR` environment variable (defaults to
+`vim` when empty).
 
 ### Enabling the Powerline look
 
@@ -227,12 +241,9 @@ To make use of these symbols, there are several options:
 [powerline patched fonts]: https://github.com/powerline/fonts
 [powerline font]: https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
 [terminal support]: http://powerline.readthedocs.io/en/master/usage.html#usage-terminal-emulators
-[Powerline manual]: http://powerline.readthedocs.org/en/latest/installation.html#fonts-installation
 
-Please see the [Powerline manual] for further details.
-
-Then edit your `~/.tmux.conf.local` copy (with `<prefix> e`) and adjust the
-following variables:
+Then edit your `.local` customization file copy (with `<prefix> e`) and adjust
+the following variables:
 
 ```
 tmux_conf_theme_left_separator_main='\uE0B0'
@@ -240,21 +251,26 @@ tmux_conf_theme_left_separator_sub='\uE0B1'
 tmux_conf_theme_right_separator_main='\uE0B2'
 tmux_conf_theme_right_separator_sub='\uE0B3'
 ```
+
+The [Powerline manual] contains further details on how to install fonts
+containing the Powerline symbols. You don't need to install Powerline itself
+though.
+
+[Powerline manual]: http://powerline.readthedocs.org/en/latest/installation.html#fonts-installation
+
 ### Configuring the status line
 
-Contrary to the first iterations of this configuration, by now you have total
-control on the content and order of `status-left` and `status-right`.
-
-Edit your `~/.tmux.conf.local` copy (`<prefix> e`) and adjust the
+Edit your `.local` customization file copy (`<prefix> e`) and adjust the
 `tmux_conf_theme_status_left` and `tmux_conf_theme_status_right` variables to
 your own preferences.
 
 This configuration supports the following builtin variables:
 
  - `#{battery_bar}`: horizontal battery charge bar
+ - `#{battery_hbar}`: 1 character wide, horizontal battery charge bar
+ - `#{battery_vbar}`: 1 character wide, vertical battery charge bar
  - `#{battery_percentage}`: battery percentage
  - `#{battery_status}`: is battery charging or discharging?
- - `#{battery_vbar}`: vertical battery charge bar
  - `#{circled_session_name}`: circled session number, up to 20
  - `#{hostname}`: SSH/Mosh aware hostname information
  - `#{hostname_ssh}`: SSH/Mosh aware hostname information, blank when not
@@ -273,7 +289,7 @@ This configuration supports the following builtin variables:
  - `#{username_ssh}`: SSH aware username information, blank when not connected
    to a remote server through SSH/Mosh
 
-Beside custom variables mentioned above, the `tmux_conf_theme_status_left` and
+Beside the variables mentioned above, the `tmux_conf_theme_status_left` and
 `tmux_conf_theme_status_right` variables support usual tmux syntax, e.g. using
 `#()` to call an external command that inserts weather information provided by
 [wttr.in]:
@@ -287,8 +303,8 @@ minutes whatever the value of `status-interval`.
 
 [wttr.in]: https://github.com/chubin/wttr.in#one-line-output
 
-💡 You can also define your own custom variables. See the sample
-`.tmux.conf.local` file for instructions.
+💡 You can also define your own custom variables by writing special functions,
+see the sample `.local` customization file for instructions.
 
 Finally, remember `tmux_conf_theme_status_left` and
 `tmux_conf_theme_status_right` end up being given to tmux as `status-left` and
@@ -297,7 +313,7 @@ character has a special meaning and needs to be escaped by doubling it, e.g.
 ```
 tmux_conf_theme_status_right='#(echo foo %% bar)'
 ```
-See `man 3 strftime`.
+See also `man 3 strftime`.
 
 ### Using TPM plugins
 
@@ -306,34 +322,17 @@ This configuration now comes with built-in [TPM] support:
 - whenever a plugin introduces a variable to be used in `status-left` or
   `status-right`, you can use it in `tmux_conf_theme_status_left` and
   `tmux_conf_theme_status_right` variables, see instructions above 👆
-- ⚠️ do not add `set -g @plugin 'tmux-plugins/tpm'`
-- ⚠️ do not add `run '~/.tmux/plugins/tpm/tpm'` to `~/.tmux.conf` or your
-- `~/.tmux.conf.local` copy ← people who are used to alter
-  `.tmux.conf` to add TPM support will have to adapt their configuration
+- ⚠️ do not add `set -g @plugin 'tmux-plugins/tpm'` to any configuration file
+- ⛔️ do not add `run '~/.tmux/plugins/tpm/tpm'` to any configuration file
 
-See `~/.tmux.conf.local` for instructions.
+⚠️ The TPM bindings differ slightly from upstream:
+  - installing plugins: `<prefix> + I`
+  - uninstalling plugins: `<prefix> + Alt + u`
+  - updating plugins: `<prefix> + u`
+
+See the sample `.local` customization file for instructions.
 
 [TPM]: https://github.com/tmux-plugins/tpm
-
-### Accessing the macOS clipboard from within tmux sessions (tmux `< 2.6`)
-
-[Chris Johnsen created the `reattach-to-user-namespace`
-utility][reattach-to-user-namespace] that makes `pbcopy` and `pbpaste` work
-again within tmux.
-
-To install `reattach-to-user-namespace`, use either [MacPorts][] or
-[Homebrew][]:
-
-    $ port install tmux-pasteboard
-
-or
-
-    $ brew install reattach-to-user-namespace
-
-Once installed, `reattach-to-usernamespace` will be automatically detected.
-
-[MacPorts]: http://www.macports.org/
-[Homebrew]: http://brew.sh/
 
 ### Using the configuration under Cygwin within Mintty
 
