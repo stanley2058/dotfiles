@@ -20,8 +20,8 @@ format = "took [$duration]($style)"
 
 # These symbols will only show when battery levels are 20% or less
 [battery]
-charging_symbol = " "
-discharging_symbol = " "
+charging_symbol = "󰂏 "
+discharging_symbol = "󰂌 "
 
 [[battery.display]] # "bold red" style when capacity is between 0% and 20%
 threshold = 20
@@ -35,7 +35,7 @@ format = '[$symbol\[$status\]]($style) '
 disabled = false
 
 [memory_usage]
-symbol = " "
+symbol = "󰍛 "
 format = "$symbol[${ram} ${ram_pct}]($style) "
 threshold = 80
 style = "bold dimmed white"
@@ -43,7 +43,7 @@ disabled = false
 
 [time]
 disabled = true
-format = ' [\[$time\]]($style) '
+format = ' [\[$time\]]($style) '
 time_format = "%T"
 
 [character]
@@ -51,10 +51,10 @@ success_symbol = "[❯](bold yellow)"
 error_symbol = "[✗](bold red) "
 
 [docker_context]
-format = "via [ $context](blue bold)"
+format = "via [ $context](blue bold)"
 
 [kubernetes]
-symbol = "ﴱ "
+symbol = " "
 style = "dimmed green"
 disabled = false
 [kubernetes.context_aliases]
@@ -75,13 +75,13 @@ cherry_pick = "[ PICKING](bold red)"
 
 [git_status]
 conflicted = "ﲅ "
-ahead = " ×${count} "
-behind = " ×${count} "
-diverged = " ×${ahead_count} ×${behind_count} "
+ahead = " ×${count} "
+behind = " ×${count} "
+diverged = " ×${ahead_count} ×${behind_count} "
 untracked = " ×${count} "
-stashed = "ﰙ "
-modified = " ×${count} "
-staged = "ﱐ ×${count} "
+stashed = " "
+modified = "󰏬 ×${count} "
+staged = "󰝒 ×${count} "
 renamed = " ×${count} "
 deleted = " ×${count} "
 style = "bright-white"
