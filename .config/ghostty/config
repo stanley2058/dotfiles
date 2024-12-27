@@ -1,0 +1,20 @@
+# theme & fonts
+theme                   = catppuccin-mocha
+font-size               = 13
+font-family             = MonoLisa, Symbols Nerd Font Mono
+font-style              = Regular
+font-style-bold         = Bold
+font-style-italic       = Regular Italic
+font-style-bold-italic  = Bold Italic
+
+# general
+background-opacity          = 0.9
+mouse-hide-while-typing     = true
+confirm-close-surface       = false
+window-width                = 86
+window-height               = 26
+shell-integration-features  = no-cursor
+cursor-style                = block
+
+# on Linux
+window-decoration = false
