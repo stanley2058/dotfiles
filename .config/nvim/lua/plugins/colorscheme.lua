@@ -14,6 +14,7 @@ return {
                 noice = true,
                 notify = true,
                 which_key = true,
+                blink_cmp = true,
             },
             custom_highlights = function(colors)
                 return {
