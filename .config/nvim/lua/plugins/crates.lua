@@ -1,6 +1,5 @@
 return {
-    "saecki/crates.nvim",
-    event = "VeryLazy",
+    "Saecki/crates.nvim",
     config = function()
         local crates = require("crates")
         local wk = require("which-key")
@@ -33,9 +32,4 @@ return {
             },
         })
     end,
-    opts = {
-        completion = {
-            cmp = { enabled = true },
-        },
-    },
 }

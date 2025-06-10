@@ -24,6 +24,7 @@ return {
 
                 tailwindcss = function(_, opts)
                     opts.settings = {
+                        filetypes_include = { "templ" },
                         tailwindCSS = {
                             experimental = {
                                 classRegex = {

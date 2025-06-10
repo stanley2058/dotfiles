@@ -8,7 +8,6 @@ vim.list_extend(combined_formatter, eslint_formatter)
 return {
     "stevearc/conform.nvim",
     opts = {
-        log_level = vim.log.levels.DEBUG,
         default_format_opts = {
             timeout_ms = 5000,
         },
