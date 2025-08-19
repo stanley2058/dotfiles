@@ -95,7 +95,7 @@ function fish_user_key_bindings
 end
 
 if [ -f $HOME/.local/bin/shell-cross-env ]
-    $HOME/.local/bin/shell-cross-env --to fish source /etc/profile $HOME/.alias_profile $HOME/.env_profile | source
+    $HOME/.local/bin/shell-cross-env --to fish source /etc/profile $HOME/.env_profile $HOME/.alias_profile | source
 else
     bass source /etc/profile
     bass source $HOME/.alias_profile
