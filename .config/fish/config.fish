@@ -110,6 +110,7 @@ function __lazy_conda --on-event fish_prompt
         eval $HOME/miniconda3/bin/conda "shell.fish" hook $argv | source
         # <<< conda initialize <<<
     end
+    functions -e __lazy_conda
 end
 
 # Fish colors
@@ -121,7 +122,10 @@ set fish_color_param brcyan
 
 # fzf
 set fzf_fd_opts --hidden --exclude=.git
-fzf_configure_bindings
+function __lazy_fzf --on-event fish_prompt
+    fzf_configure_bindings
+    functions -e __lazy_fzf
+end
 
 # Init Starship
 starship init fish | source
