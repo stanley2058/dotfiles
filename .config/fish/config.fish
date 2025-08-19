@@ -66,23 +66,22 @@ function fish_user_key_bindings
     bind \ek $clear_no_scrollback
 end
 
-# Bass
-bass source /etc/profile
-bass source $HOME/.alias_profile
-bass source $HOME/.env_profile
-if [ -f "/usr/share/nvm/init-nvm.sh" ]
-    bass source /usr/share/nvm/init-nvm.sh
-else if [ -f "$HOME/.nvm/nvm.sh" ]
-    bass source "$HOME/.nvm/nvm.sh"
+if [ -f $HOME/.local/bin/shell-cross-env ]
+    $HOME/.local/bin/shell-cross-env --to fish source /etc/profile $HOME/.alias_profile $HOME/.env_profile | source
+else
+    bass source /etc/profile
+    bass source $HOME/.alias_profile
+    bass source $HOME/.env_profile
 end
 
-
-# Init conda if exist
-if [ -f $HOME/miniconda3/bin/conda ]
-    # >>> conda initialize >>>
-    # !! Contents within this block are managed by 'conda init' !!
-    eval $HOME/miniconda3/bin/conda "shell.fish" hook $argv | source
-    # <<< conda initialize <<<
+function __lazy_conda --on-event fish_prompt
+    # Init conda if exist
+    if [ -f $HOME/miniconda3/bin/conda ]
+        # >>> conda initialize >>>
+        # !! Contents within this block are managed by 'conda init' !!
+        eval $HOME/miniconda3/bin/conda "shell.fish" hook $argv | source
+        # <<< conda initialize <<<
+    end
 end
 
 # Fish colors
@@ -101,5 +100,5 @@ starship init fish | source
 enable_transience
 
 if type -q zoxide
-    zoxide init fish | source
+    zoxide init --cmd cd fish | source
 end
