@@ -3,9 +3,37 @@
 # Fish greet
 function greet_title
     set system_logo ($HOME/Scripts/os-logo.sh)
-    set uptime_pretty (uptime -p | sed -E 's/ minute[s]*/m/; s/ hour[s]*/h/; s/ day[s]*/d/; s/ week[s]*/w/; s/ year[s]*/y/')
+    if test (uname) = Darwin
+        set uptime_pretty (uptime-pretty-macos | sed -E 's/ minute[s]*/m/; s/ hour[s]*/h/; s/ day[s]*/d/; s/ week[s]*/w/; s/ year[s]*/y/')
+    else
+        set uptime_pretty (uptime -p | sed -E 's/ minute[s]*/m/; s/ hour[s]*/h/; s/ day[s]*/d/; s/ week[s]*/w/; s/ year[s]*/y/')
+    end
     set greet_msg (printf "%s \033[1;32m%s \033[1;36m%s \033[1;37m%s \033[0m" $system_logo (uname -rn) (LC_ALL=en_US.utf8 date +"%T") $uptime_pretty)
     echo $greet_msg
+end
+
+function uptime-pretty-macos
+    set boot (sysctl -n kern.boottime | awk -F'[ ,:]+' '{print $4}')
+    set now (date +%s)
+    set diff (math $now - $boot)
+
+    echo $diff | awk '{
+        days = int($1 / 86400)
+        hours = int(($1 % 86400) / 3600)
+        mins = int(($1 % 3600) / 60)
+
+        out = "up"
+        if (days > 0) {
+            out = out " " days " day" (days > 1 ? "s" : "")
+        }
+        if (hours > 0) {
+            out = out (days > 0 ? "," : "") " " hours " hour" (hours > 1 ? "s" : "")
+        }
+        if (mins > 0) {
+            out = out ((days > 0 || hours > 0) ? "," : "") " " mins " minute" (mins > 1 ? "s" : "")
+        }
+        print out
+    }'
 end
 
 function spark_greeting
