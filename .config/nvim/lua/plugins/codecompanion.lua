@@ -1,15 +1,12 @@
-local default_model = "google/gemini-2.5-flash-preview-05-20"
+local default_model = "openai/gpt-5"
 local current_model = default_model
 local available_models = {
     "google/gemini-2.5-pro-preview",
     "google/gemini-2.5-flash-preview-05-20",
-    "openai/gpt-4.1",
-    "openai/o4-mini",
-    "openai/o4-mini-high",
-    "anthropic/claude-3.7-sonnet",
-    "anthropic/claude-3.5-sonnet",
     "anthropic/claude-sonnet-4",
-    "anthropic/claude-opus-4",
+    "anthropic/claude-opus-4.1",
+    "openai/gpt-5",
+    "openai/gpt-5-mini",
 }
 local function select_model()
     vim.ui.select(available_models, {
@@ -25,9 +22,13 @@ end
 return {
     "olimorris/codecompanion.nvim",
     event = "VeryLazy",
+    init = function()
+        require("utils.companion-notification").init()
+    end,
     dependencies = {
         "nvim-lua/plenary.nvim",
         "nvim-treesitter/nvim-treesitter",
+        "folke/noice.nvim",
     },
     keys = {
         { "<leader>Cc", "<cmd>CodeCompanion<cr>", desc = "Code Companion", mode = { "n" } },

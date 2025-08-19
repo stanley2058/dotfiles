@@ -41,24 +41,12 @@ threshold = 80
 style = "bold dimmed white"
 disabled = false
 
-[time]
-disabled = true
-format = ' [\[$time\]]($style) '
-time_format = "%T"
-
 [character]
 success_symbol = "[❯](bold yellow)"
 error_symbol = "[✗](bold red) "
 
 [docker_context]
 format = "via [ $context](blue bold)"
-
-[kubernetes]
-symbol = " "
-style = "dimmed green"
-disabled = false
-[kubernetes.context_aliases]
-"dev.local.cluster.k8s" = "dev"
 
 [git_branch]
 symbol = " "
@@ -89,11 +77,6 @@ format = "$all_status$ahead_behind"
 
 [hostname]
 format = "[$hostname]($style)\n"
-
-[localip]
-ssh_only = true
-format = "@[$localipv4](bold red) "
-disabled = true
 
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"

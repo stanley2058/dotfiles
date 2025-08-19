@@ -1,15 +1,16 @@
 # theme & fonts
 theme                   = catppuccin-mocha
-font-size               = 13
-font-family             = MonoLisa
+font-size               = 14
+font-family             = "Berkeley Mono Variable"
 font-style              = Regular
 font-style-bold         = Bold
-font-style-italic       = Regular Italic
-font-style-bold-italic  = Bold Italic
-font-codepoint-map      = U+e000-U+e00a,U+ea60-U+ebeb,U+e0a0-U+e0c8,U+e0ca,U+e0cc-U+e0d7,U+e200-U+e2a9,U+e300-U+e3e3,U+e5fa-U+e6b1,U+e700-U+e7c5,U+ed00-U+efc1,U+f000-U+f2ff,U+f000-U+f2e0,U+f300-U+f372,U+f400-U+f533,U+f0001-U+f1af0=Symbols Nerd Font Mono
+font-style-italic       = Oblique
+font-style-bold-italic  = Bold Oblique
+#font-codepoint-map      = U+e000-U+e00a,U+ea60-U+ebeb,U+e0a0-U+e0c8,U+e0ca,U+e0cc-U+e0d7,U+e200-U+e2a9,U+e300-U+e3e3,U+e5fa-U+e6b1,U+e700-U+e7c5,U+ed00-U+efc1,U+f000-U+f2ff,U+f000-U+f2e0,U+f300-U+f372,U+f400-U+f533,U+f0001-U+f1af0=Symbols Nerd Font Mono
+font-feature            = -dlig
 
 # general
-background-opacity          = 0.9
+background-opacity          = 1
 mouse-hide-while-typing     = true
 confirm-close-surface       = false
 window-width                = 86
@@ -18,4 +19,5 @@ shell-integration-features  = no-cursor
 cursor-style                = block
 
 # on Linux
-# window-decoration = false
+window-decoration = false
+gtk-single-instance = true
