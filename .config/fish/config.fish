@@ -120,6 +120,9 @@ set fish_color_command brgreen
 set fish_color_error red
 set fish_color_param brcyan
 
+# GPG TTY
+set GPG_TTY (tty)
+
 # fzf
 set fzf_fd_opts --hidden --exclude=.git
 function __lazy_fzf --on-event fish_prompt
