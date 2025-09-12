@@ -130,6 +130,8 @@ function __lazy_fzf --on-event fish_prompt
     functions -e __lazy_fzf
 end
 
+fnm env --use-on-cd --shell fish | source
+
 # Init Starship
 starship init fish | source
 enable_transience
