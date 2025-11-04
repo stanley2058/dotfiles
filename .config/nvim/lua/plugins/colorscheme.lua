@@ -6,19 +6,13 @@ return {
         priority = 1000,
         opts = {
             flavour = "mocha",
-            intergations = {
-                cmp = true,
-                gitsigns = true,
-                nvimtree = true,
-                treesitter = true,
-                noice = true,
-                notify = true,
-                which_key = true,
-                blink_cmp = true,
-            },
+            auto_integrations = true,
             custom_highlights = function(colors)
                 return {
                     Operator = { fg = colors.mauve },
+                    ["@variable.member"] = { fg = colors.lavender },
+                    ["@property"] = { fg = colors.lavender },
+                    ["@keyword.export"] = { fg = colors.sky },
                 }
             end,
         },
@@ -36,5 +30,14 @@ return {
             css = { rgb_fn = true }, -- Enable parsing rgb(...) functions in css.
             scss = { rgb_fn = true },
         },
+    },
+    {
+        "akinsho/bufferline.nvim",
+        init = function()
+            local bufline = require("catppuccin.groups.integrations.bufferline")
+            function bufline.get()
+                return bufline.get_theme()
+            end
+        end,
     },
 }
