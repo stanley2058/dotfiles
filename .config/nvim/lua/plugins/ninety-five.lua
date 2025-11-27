@@ -1,31 +1,31 @@
--- return {}
-return {
-    "ninetyfive-gg/ninetyfive.nvim",
-    version = "*", -- use stable version, or `false` for dev version
-    config = function()
-        require("ninetyfive").setup({
-            enable_on_startup = true,
-            debug = false,
-            server = "wss://api.ninetyfive.gg",
-            mappings = {
-                -- When `true`, creates all the mappings set
-                enabled = true,
-                -- Sets a global mapping to accept a suggestion
-                accept = "<Tab>",
-                -- Sets a global mapping to accept a suggestion and edit
-                accept_edit = "<C-g>",
-                -- Sets a global mapping to reject a suggestion
-                reject = "<C-c>",
-            },
-            indexing = {
-                -- Possible values: "ask" | "on" | "off"
-                -- "ask" - prompt user for permission to index code
-                -- "on" - automatically index code
-                -- "off" - disable code indexing
-                mode = "on",
-                -- Whether to cache the user's answer per project
-                cache_consent = false,
-            },
-        })
-    end,
-}
+return {}
+-- return {
+--     "ninetyfive-gg/ninetyfive.nvim",
+--     version = "*", -- use stable version, or `false` for dev version
+--     config = function()
+--         require("ninetyfive").setup({
+--             enable_on_startup = true,
+--             debug = false,
+--             server = "wss://api.ninetyfive.gg",
+--             mappings = {
+--                 -- When `true`, creates all the mappings set
+--                 enabled = true,
+--                 -- Sets a global mapping to accept a suggestion
+--                 accept = "<Tab>",
+--                 -- Sets a global mapping to accept a suggestion and edit
+--                 accept_edit = "<C-g>",
+--                 -- Sets a global mapping to reject a suggestion
+--                 reject = "<C-c>",
+--             },
+--             indexing = {
+--                 -- Possible values: "ask" | "on" | "off"
+--                 -- "ask" - prompt user for permission to index code
+--                 -- "on" - automatically index code
+--                 -- "off" - disable code indexing
+--                 mode = "on",
+--                 -- Whether to cache the user's answer per project
+--                 cache_consent = false,
+--             },
+--         })
+--     end,
+-- }

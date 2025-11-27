@@ -27,6 +27,39 @@ local function javascript_formatter(bufnr)
     return formatters
 end
 
+---@param bufnr integer
+---@param markers string[]
+---@return string|nil
+local function find_root(bufnr, markers)
+    local bufname = vim.api.nvim_buf_get_name(bufnr)
+    if bufname == "" then
+        return nil
+    end
+    local dir = vim.fs.dirname(bufname)
+    return vim.fs.root(dir, markers)
+end
+
+---@param bufnr integer
+---@return boolean
+local function has_biome(bufnr)
+    local root = find_root(bufnr, { "biome.json", "biome.jsonc" })
+    return root ~= nil
+end
+
+local function js_like_with_biome(bufnr)
+    if has_biome(bufnr) then
+        return { "biome-check" }
+    end
+    return javascript_formatter(bufnr)
+end
+
+local function simple_with_biome(bufnr)
+    if has_biome(bufnr) then
+        return { "biome-check" }
+    end
+    return prettier_formatter(bufnr)
+end
+
 return {
     "stevearc/conform.nvim",
     opts = {
@@ -34,6 +67,16 @@ return {
             timeout_ms = 5000,
         },
         formatters = {
+            ["biome-check"] = {
+                timeout_ms = 8000,
+                require_cwd = true,
+                cwd = require("conform.util").root_file({
+                    "biome.json",
+                    "biome.jsonc",
+                    "package.json",
+                    ".git",
+                }),
+            },
             eslint_d = {
                 timeout_ms = 10000,
                 require_cwd = true,
@@ -48,23 +91,23 @@ return {
             },
         },
         formatters_by_ft = {
-            ["javascript"] = javascript_formatter,
-            ["javascriptreact"] = javascript_formatter,
-            ["typescript"] = javascript_formatter,
-            ["typescriptreact"] = javascript_formatter,
-            ["vue"] = prettier_formatter,
-            ["css"] = prettier_formatter,
-            ["scss"] = prettier_formatter,
-            ["less"] = prettier_formatter,
-            ["html"] = prettier_formatter,
-            ["json"] = prettier_formatter,
-            ["jsonc"] = prettier_formatter,
-            ["yaml"] = prettier_formatter,
-            ["markdown"] = prettier_formatter,
-            ["markdown.mdx"] = prettier_formatter,
-            ["graphql"] = prettier_formatter,
-            ["handlebars"] = prettier_formatter,
-            ["templ"] = { "templ" },
+            javascript = js_like_with_biome,
+            javascriptreact = js_like_with_biome,
+            typescript = js_like_with_biome,
+            typescriptreact = js_like_with_biome,
+            vue = simple_with_biome,
+            css = simple_with_biome,
+            scss = simple_with_biome,
+            less = simple_with_biome,
+            html = simple_with_biome,
+            json = simple_with_biome,
+            jsonc = simple_with_biome,
+            yaml = simple_with_biome,
+            markdown = simple_with_biome,
+            ["markdown.mdx"] = simple_with_biome,
+            graphql = simple_with_biome,
+            handlebars = simple_with_biome,
+            templ = { "templ" },
         },
     },
 }

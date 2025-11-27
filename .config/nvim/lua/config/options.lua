@@ -28,6 +28,9 @@ vim.o.scrolloff = 8
 
 vim.o.shell = "/usr/bin/bash"
 
+vim.o.foldmethod = "marker"
+vim.o.foldmarker = "#region,#endregion"
+
 -- diagnostic with rounded borders
 vim.diagnostic.config({
     float = { border = "rounded" },
