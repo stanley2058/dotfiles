@@ -20,12 +20,19 @@ local function eslint_formatter(bufnr)
     return { first(bufnr, "eslint_d", "eslint") }
 end
 
-local function javascript_formatter(bufnr)
-    local formatters = {}
-    vim.list_extend(formatters, prettier_formatter(bufnr))
-    vim.list_extend(formatters, eslint_formatter(bufnr))
-    return formatters
-end
+local OXLINT_CONFIG_MARKERS = {
+    ".oxlintrc.json",
+    ".oxlintrc.jsonc",
+    "oxlint.config.js",
+    "oxlint.config.cjs",
+    "oxlint.config.mjs",
+    "oxlint.config.ts",
+}
+
+local OXFMT_CONFIG_MARKERS = {
+    ".oxfmtrc.json",
+    ".oxfmtrc.jsonc",
+}
 
 ---@param bufnr integer
 ---@param markers string[]
@@ -46,6 +53,41 @@ local function has_biome(bufnr)
     return root ~= nil
 end
 
+---@param bufnr integer
+---@return boolean
+local function has_oxlint(bufnr)
+    local root = find_root(bufnr, OXLINT_CONFIG_MARKERS)
+    return root ~= nil
+end
+
+---@param bufnr integer
+---@return boolean
+local function has_oxfmt(bufnr)
+    local root = find_root(bufnr, OXFMT_CONFIG_MARKERS)
+    return root ~= nil
+end
+
+---@param bufnr integer
+---@return boolean
+local function has_oxc(bufnr)
+    return has_oxlint(bufnr) or has_oxfmt(bufnr)
+end
+
+local function javascript_formatter(bufnr)
+    if has_oxfmt(bufnr) then
+        return { "oxfmt" }
+    end
+
+    local formatters = {}
+
+    if not has_oxc(bufnr) then
+        vim.list_extend(formatters, prettier_formatter(bufnr))
+    end
+
+    vim.list_extend(formatters, eslint_formatter(bufnr))
+    return formatters
+end
+
 local function js_like_with_biome(bufnr)
     if has_biome(bufnr) then
         return { "biome-check" }
@@ -57,6 +99,15 @@ local function simple_with_biome(bufnr)
     if has_biome(bufnr) then
         return { "biome-check" }
     end
+
+    if has_oxfmt(bufnr) then
+        return { "oxfmt" }
+    end
+
+    if has_oxc(bufnr) then
+        return {}
+    end
+
     return prettier_formatter(bufnr)
 end
 
@@ -76,6 +127,14 @@ return {
                     "package.json",
                     ".git",
                 }),
+            },
+            oxfmt = {
+                timeout_ms = 8000,
+                command = "oxfmt",
+                stdin = true,
+                require_cwd = true,
+                cwd = require("conform.util").root_file(OXFMT_CONFIG_MARKERS),
+                args = { "--stdin-filepath", "$FILENAME" },
             },
             eslint_d = {
                 timeout_ms = 10000,
