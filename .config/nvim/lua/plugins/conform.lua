@@ -20,18 +20,20 @@ local function eslint_formatter(bufnr)
     return { first(bufnr, "eslint_d", "eslint") }
 end
 
-local OXLINT_CONFIG_MARKERS = {
-    ".oxlintrc.json",
-    ".oxlintrc.jsonc",
-    "oxlint.config.js",
-    "oxlint.config.cjs",
-    "oxlint.config.mjs",
-    "oxlint.config.ts",
-}
-
-local OXFMT_CONFIG_MARKERS = {
-    ".oxfmtrc.json",
-    ".oxfmtrc.jsonc",
+local PRETTIER_CONFIG_MARKERS = {
+    ".prettierrc",
+    ".prettierrc.json",
+    ".prettierrc.json5",
+    ".prettierrc.yaml",
+    ".prettierrc.yml",
+    ".prettierrc.toml",
+    ".prettierrc.js",
+    ".prettierrc.cjs",
+    ".prettierrc.mjs",
+    "prettier.config.js",
+    "prettier.config.cjs",
+    "prettier.config.mjs",
+    "prettier.config.ts",
 }
 
 ---@param bufnr integer
@@ -55,33 +57,18 @@ end
 
 ---@param bufnr integer
 ---@return boolean
-local function has_oxlint(bufnr)
-    local root = find_root(bufnr, OXLINT_CONFIG_MARKERS)
+local function has_prettier_config(bufnr)
+    local root = find_root(bufnr, PRETTIER_CONFIG_MARKERS)
     return root ~= nil
-end
-
----@param bufnr integer
----@return boolean
-local function has_oxfmt(bufnr)
-    local root = find_root(bufnr, OXFMT_CONFIG_MARKERS)
-    return root ~= nil
-end
-
----@param bufnr integer
----@return boolean
-local function has_oxc(bufnr)
-    return has_oxlint(bufnr) or has_oxfmt(bufnr)
 end
 
 local function javascript_formatter(bufnr)
-    if has_oxfmt(bufnr) then
-        return { "oxfmt" }
-    end
-
     local formatters = {}
 
-    if not has_oxc(bufnr) then
+    if has_prettier_config(bufnr) then
         vim.list_extend(formatters, prettier_formatter(bufnr))
+    else
+        vim.list_extend(formatters, { "oxfmt" })
     end
 
     vim.list_extend(formatters, eslint_formatter(bufnr))
@@ -100,15 +87,11 @@ local function simple_with_biome(bufnr)
         return { "biome-check" }
     end
 
-    if has_oxfmt(bufnr) then
-        return { "oxfmt" }
+    if has_prettier_config(bufnr) then
+        return prettier_formatter(bufnr)
     end
 
-    if has_oxc(bufnr) then
-        return {}
-    end
-
-    return prettier_formatter(bufnr)
+    return { "oxfmt" }
 end
 
 return {
@@ -132,9 +115,7 @@ return {
                 timeout_ms = 8000,
                 command = "oxfmt",
                 stdin = true,
-                require_cwd = true,
-                cwd = require("conform.util").root_file(OXFMT_CONFIG_MARKERS),
-                args = { "--stdin-filepath", "$FILENAME" },
+                args = { "--line-width=80", "--stdin-filepath", "$FILENAME" },
             },
             eslint_d = {
                 timeout_ms = 10000,

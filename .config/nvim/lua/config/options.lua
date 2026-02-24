@@ -40,7 +40,7 @@ if not vim.g.vscode then
     vim.o.termguicolors = true
     vim.o.cursorline = true
     vim.o.signcolumn = "yes"
-    vim.o.colorcolumn = "80"
+    vim.o.colorcolumn = "80,120"
     vim.o.spell = true
 end
 
