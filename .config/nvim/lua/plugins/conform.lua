@@ -1,23 +1,23 @@
 ---@param bufnr integer
 ---@param ... string
----@return string
-local function first(bufnr, ...)
+---@return string[]
+local function available(bufnr, ...)
     local conform = require("conform")
+    local formatters = {}
+
     for i = 1, select("#", ...) do
         local formatter = select(i, ...)
-        if conform.get_formatter_info(formatter, bufnr).available then
-            return formatter
+        local ok, info = pcall(conform.get_formatter_info, formatter, bufnr)
+        if ok and info.available then
+            table.insert(formatters, formatter)
         end
     end
-    return select(1, ...)
+
+    return formatters
 end
 
 local function prettier_formatter(bufnr)
-    return { first(bufnr, "prettierd", "prettier") }
-end
-
-local function eslint_formatter(bufnr)
-    return { first(bufnr, "eslint_d", "eslint") }
+    return available(bufnr, "prettierd", "prettier")
 end
 
 local PRETTIER_CONFIG_MARKERS = {
@@ -34,6 +34,17 @@ local PRETTIER_CONFIG_MARKERS = {
     "prettier.config.cjs",
     "prettier.config.mjs",
     "prettier.config.ts",
+}
+
+local OXLINT_CONFIG_MARKERS = {
+    "oxlintrc.json",
+    "oxlintrc.jsonc",
+    ".oxlintrc.json",
+    ".oxlintrc.jsonc",
+    "oxlint.config.js",
+    "oxlint.config.cjs",
+    "oxlint.config.mjs",
+    "oxlint.config.ts",
 }
 
 ---@param bufnr integer
@@ -62,17 +73,60 @@ local function has_prettier_config(bufnr)
     return root ~= nil
 end
 
-local function javascript_formatter(bufnr)
-    local formatters = {}
+---@param path string
+---@return boolean
+local function is_dir(path)
+    local stat = vim.uv.fs_stat(path)
+    return stat ~= nil and stat.type == "directory"
+end
 
-    if has_prettier_config(bufnr) then
-        vim.list_extend(formatters, prettier_formatter(bufnr))
-    else
-        vim.list_extend(formatters, { "oxfmt" })
+---@param path string
+---@param text string
+---@return boolean
+local function file_contains(path, text)
+    local fd = io.open(path, "r")
+    if not fd then
+        return false
     end
 
-    vim.list_extend(formatters, eslint_formatter(bufnr))
-    return formatters
+    local content = fd:read("*a")
+    fd:close()
+    return content ~= nil and content:find(text, 1, true) ~= nil
+end
+
+---@param bufnr integer
+---@return boolean
+local function prettier_is_usable(bufnr)
+    local root = find_root(bufnr, PRETTIER_CONFIG_MARKERS)
+    if root == nil then
+        return false
+    end
+
+    for _, marker in ipairs(PRETTIER_CONFIG_MARKERS) do
+        local config_path = vim.fs.joinpath(root, marker)
+        if file_contains(config_path, "prettier-plugin-tailwindcss") then
+            return is_dir(vim.fs.joinpath(root, "node_modules", "prettier-plugin-tailwindcss"))
+        end
+    end
+
+    return true
+end
+
+---@param bufnr integer
+---@return string[]
+local function prettier_or_oxfmt(bufnr)
+    if prettier_is_usable(bufnr) then
+        local prettier = prettier_formatter(bufnr)
+        if #prettier > 0 then
+            return prettier
+        end
+    end
+
+    return available(bufnr, "oxfmt")
+end
+
+local function javascript_formatter(bufnr)
+    return available(bufnr, "oxfmt", "oxlint")
 end
 
 local function js_like_with_biome(bufnr)
@@ -87,11 +141,7 @@ local function simple_with_biome(bufnr)
         return { "biome-check" }
     end
 
-    if has_prettier_config(bufnr) then
-        return prettier_formatter(bufnr)
-    end
-
-    return { "oxfmt" }
+    return prettier_or_oxfmt(bufnr)
 end
 
 return {
@@ -113,9 +163,23 @@ return {
             },
             oxfmt = {
                 timeout_ms = 8000,
-                command = "oxfmt",
+                command = require("conform.util").from_node_modules("oxfmt"),
                 stdin = true,
-                args = { "--line-width=80", "--stdin-filepath", "$FILENAME" },
+                args = { "--stdin-filepath", "$FILENAME" },
+                cwd = require("conform.util").root_file({
+                    ".oxfmtrc.json",
+                    "package.json",
+                    ".git",
+                }),
+                require_cwd = true,
+            },
+            oxlint = {
+                timeout_ms = 10000,
+                command = require("conform.util").from_node_modules("oxlint"),
+                stdin = false,
+                args = { "--fix", "$FILENAME" },
+                cwd = require("conform.util").root_file(OXLINT_CONFIG_MARKERS),
+                require_cwd = true,
             },
             eslint_d = {
                 timeout_ms = 10000,
@@ -135,7 +199,7 @@ return {
             javascriptreact = js_like_with_biome,
             typescript = js_like_with_biome,
             typescriptreact = js_like_with_biome,
-            vue = simple_with_biome,
+            vue = js_like_with_biome,
             css = simple_with_biome,
             scss = simple_with_biome,
             less = simple_with_biome,

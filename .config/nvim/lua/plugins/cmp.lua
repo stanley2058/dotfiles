@@ -9,6 +9,9 @@ return {
                 ["<M-.>"] = { "show", "show_documentation", "hide_documentation" },
                 ["<C-a>"] = { "select_and_accept" },
             },
+            cmdline = {
+                enabled = false,
+            },
         },
     },
 }

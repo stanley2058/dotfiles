@@ -3,6 +3,7 @@
 -- Add any additional options here
 
 vim.g.mapleader = " "
+vim.g.lazyvim_picker = "snacks"
 
 vim.o.showcmd = true
 vim.o.laststatus = 2
@@ -46,3 +47,6 @@ end
 
 vim.filetype.add({ extension = { templ = "templ" } })
 vim.filetype.add({ extension = { ejs = "html" } })
+
+vim.treesitter.language.register("markdown", "mdx")
+vim.treesitter.language.register("markdown", "markdown.mdx")

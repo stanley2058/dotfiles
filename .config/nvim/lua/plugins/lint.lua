@@ -1,4 +1,6 @@
 local OXLINT_CONFIG_MARKERS = {
+    "oxlintrc.json",
+    "oxlintrc.jsonc",
     ".oxlintrc.json",
     ".oxlintrc.jsonc",
     "oxlint.config.js",
@@ -19,11 +21,28 @@ local function has_oxlint_config(ctx)
     return root ~= nil
 end
 
+---@param ctx { filename: string }
+---@return boolean
+local function has_attached_oxlint_client(ctx)
+    if not ctx.filename or ctx.filename == "" then
+        return false
+    end
+
+    local bufnr = vim.fn.bufnr(ctx.filename)
+    if bufnr < 1 then
+        return false
+    end
+
+    return #vim.lsp.get_clients({ bufnr = bufnr, name = "oxlint" }) > 0
+end
+
 return {
     {
         "mfussenegger/nvim-lint",
         optional = true,
         opts = function(_, opts)
+            local lint = require("lint")
+
             opts.linters_by_ft = opts.linters_by_ft or {}
 
             for _, ft in ipairs({
@@ -41,7 +60,18 @@ return {
 
             opts.linters = opts.linters or {}
             opts.linters.oxlint = vim.tbl_deep_extend("force", opts.linters.oxlint or {}, {
-                condition = has_oxlint_config,
+                condition = function(ctx)
+                    return has_oxlint_config(ctx) and not has_attached_oxlint_client(ctx)
+                end,
+            })
+
+            vim.api.nvim_create_autocmd("LspAttach", {
+                callback = function(args)
+                    local client = vim.lsp.get_client_by_id(args.data.client_id)
+                    if client and client.name == "oxlint" then
+                        vim.diagnostic.reset(lint.get_namespace("oxlint"), args.buf)
+                    end
+                end,
             })
         end,
     },

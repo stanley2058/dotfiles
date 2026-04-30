@@ -17,7 +17,6 @@ require("lazy").setup({
         { import = "lazyvim.plugins.extras.coding.mini-surround" },
         { import = "lazyvim.plugins.extras.lsp.none-ls" },
         { import = "lazyvim.plugins.extras.lang.go" },
-        { import = "lazyvim.plugins.extras.linting.eslint" },
         -- import/override with your plugins
         { import = "plugins" },
     },
